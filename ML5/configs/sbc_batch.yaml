@@ -1,0 +1,23 @@
+batch_name: milestone5_sbc_batch
+config_path: configs/healthcare_sbc_config.yaml
+output_dir: ML5/outputs/sbc
+report_format: groundtruth
+confidence_threshold: 0.75
+top_k: 3
+fallback_top_k: 5
+fail_fast: false
+
+pair_collection:
+  kind: sbc
+  doc_a_dir: datasets/SBC
+  doc_b_dir: datasets/SBC/SBCbenefitgrid
+  ground_truth_dir: datasets/SBC/json
+  pair_ids:
+    - sbc_001
+    - sbc_002
+    - sbc_003
+    - sbc_004
+    - sbc_005
+    - sbc_006
+    - sbc_007
+    - sbc_008

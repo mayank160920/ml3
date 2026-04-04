@@ -1,0 +1,44 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "Project Initiation Form",
+      "doc_b_value": "project initiation form",
+      "normalized_value": "project initiation form",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "November 15, 1968",
+      "doc_b_value": "11/15/1968",
+      "normalized_value": "November 15, 1968",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_no_or_code",
+      "doc_a_value": "CST-N-68",
+      "doc_b_value": "CST-N-99",
+      "normalized_value": null,
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "project_name",
+      "doc_a_value": "Charcoal Smoking Tobacco",
+      "doc_b_value": "Charcoal Smoking Tob.",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_lead",
+      "doc_a_value": "Mann",
+      "doc_b_value": "Mann",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    }
+  ]
+}

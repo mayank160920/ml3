@@ -1,0 +1,242 @@
+# configs/funsd_ner_config.yaml
+# ------------------------------
+# FUNSD form understanding dataset — superset entity extraction config.
+# Covers all entity types present across the full FUNSD augmented dataset.
+
+config_name: funsd_ner_config
+version: "1.0"
+domain: form_understanding
+
+sections:
+
+  - section_name: Document Identity
+    section_description: >
+      Core identity fields that uniquely identify the document:
+      title, reference number, stamp identifier, and dates.
+    section_keywords:
+      - title
+      - form no
+      - sheet no
+      - notebook page
+      - change no
+      - stamp
+      - identifier
+      - reference
+      - date
+    entities:
+      - entity_name: document_title
+        entity_description: >
+          Title of the document, usually mentioned at the top in large or
+          bold text.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "MARKETING RESEARCH AUTHORIZATION"
+        data_type: text
+
+      - entity_name: document_reference_number
+        entity_description: >
+          Reference number of the document such as form number, sheet number,
+          notebook page number, change number, or assigned code.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "MRA-06"
+        data_type: text
+
+      - entity_name: document_stamp_id
+        entity_description: >
+          Single (mostly vertical) stamped numeric identifier found on the
+          bottom section of the document.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "670801704"
+        data_type: text
+
+  - section_name: Dates
+    section_description: >
+      All date fields present in the document — document date, received,
+      issued, reported, and expiry dates.
+    section_keywords:
+      - date
+      - received
+      - issued
+      - reported
+      - expiry
+      - expires
+      - effective
+    entities:
+      - entity_name: document_date
+        entity_description: >
+          Main top-level date found in the document (creation or authoring date).
+        entity_extraction_logic: DIRECT
+        entity_example_value: "4/16/90"
+        data_type: text
+
+      - entity_name: date_received
+        entity_description: >
+          Date when the item or document was received.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "04/20/90"
+        data_type: text
+
+      - entity_name: date_issued
+        entity_description: >
+          Date when the item or document was issued.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "04/16/90"
+        data_type: text
+
+      - entity_name: date_reported
+        entity_description: >
+          Date when the item or findings were reported.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "05/01/90"
+        data_type: text
+
+      - entity_name: date_expiry
+        entity_description: >
+          Date when the item, authorization, or document expires.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "12/31/90"
+        data_type: text
+
+  - section_name: Personnel
+    section_description: >
+      People mentioned in the document — sender, recipient, project lead,
+      primary signer, and CC list.
+    section_keywords:
+      - from
+      - to
+      - lead
+      - signed
+      - signature
+      - cc
+      - copy
+      - attention
+    entities:
+      - entity_name: from_person
+        entity_description: >
+          Explicit name of the 'from' person — the document author or sender.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "J. Smith"
+        data_type: text
+
+      - entity_name: to_person
+        entity_description: >
+          Explicit name of the 'to' person — the primary recipient.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "P.W. Putney"
+        data_type: text
+
+      - entity_name: project_lead
+        entity_description: >
+          Explicit name of the leader or principal investigator of the project.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "Dr. A. Johnson"
+        data_type: text
+
+      - entity_name: primary_signer_name
+        entity_description: >
+          Name of the first person who signed the document (signature block).
+        entity_extraction_logic: DIRECT
+        entity_example_value: "P.W. Putney"
+        data_type: text
+
+      - entity_name: cc_list
+        entity_description: >
+          Comma-separated stringified list of all CC (carbon copy) recipients.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "S. Willinger (3), K. A. Hutchison/S. A. Howard"
+        data_type: text
+
+  - section_name: Project Information
+    section_description: >
+      Project-level metadata: project name, number or code, and associated
+      organisation details.
+    section_keywords:
+      - project
+      - study
+      - code
+      - number
+      - name
+      - program
+    entities:
+      - entity_name: project_name
+        entity_description: >
+          Name of the project mentioned in the document.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "Y-1 Ultra 100's vs. Winston Ultra 100's"
+        data_type: text
+
+      - entity_name: project_no_or_code
+        entity_description: >
+          Project number or code found in the document.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "1990-48B"
+        data_type: text
+
+      - entity_name: source_organisation
+        entity_description: >
+          Name of the primary organisation, vendor, or supplier mentioned
+          in the document.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "Kapuler Marketing Research"
+        data_type: text
+
+  - section_name: Financial and Quantitative
+    section_description: >
+      All financial amounts, quantities, volumes, and coupon values found
+      in the document.
+    section_keywords:
+      - total
+      - cost
+      - amount
+      - sample size
+      - circulation
+      - quantity
+      - coupon
+      - value
+    entities:
+      - entity_name: final_amount
+        entity_description: >
+          The final cost, expenditure, or dollar sales amount
+          (e.g., Total Cost, Adjusted Total Cost).
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$12,500"
+        data_type: monetary
+
+      - entity_name: final_volume_or_quantity
+        entity_description: >
+          Circulation numbers, sample sizes, or unit sales figures
+          (e.g., Sample Size, Circulation (#)).
+        entity_extraction_logic: DIRECT
+        entity_example_value: "400"
+        data_type: text
+
+      - entity_name: coupon_value
+        entity_description: >
+          Value of the coupon mentioned in the document.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$0.50"
+        data_type: monetary
+
+  - section_name: Scientific
+    section_description: >
+      Scientific or chemical compound names referenced in the document.
+    section_keywords:
+      - compound
+      - chemical
+      - substance
+      - formula
+      - ingredient
+    entities:
+      - entity_name: compound_name
+        entity_description: >
+          Name of the primary chemical compound referenced in the document.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "Nicotine"
+        data_type: text
+
+validation_settings:
+  confidence_threshold: 0.70
+  high_stakes_entities:
+    - document_stamp_id
+    - document_reference_number
+    - primary_signer_name
+  human_review_escalation: true

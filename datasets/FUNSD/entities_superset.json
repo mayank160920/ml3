@@ -1,0 +1,22 @@
+{
+  "from_person": "Explicit name of the 'from' person",
+  "to_person": "Explicit name of the 'to' person",
+  "project_lead": "Explicit name of the Leader of the project",
+  "primary_signer_name": "Name of the first person who signed",
+  "document_stamp_id": "Single (mostly vertical) stamped numeric identifier on the bottom section of the document",
+  "document_reference_number": "Reference number of the document like form no., sheet no., notebook page, change no., code assigned, etc.",
+  "document_title": "Title of the document usually mentioned at the top",
+  "document_date": "Main top level date found in the document",
+  "date_received": "Date when the item was received",
+  "date_issued": "Date when the item was issued",
+  "date_reported": "Date when the item was reported",
+  "date_expiry": "Date when the item expires",
+  "project_name": "Name of the project mentioned in the document",
+  "project_no_or_code": "Project number or code found in the document",
+  "final_amount": "The final cost, expenditure, or dollar sales amount (e.g., Total Cost, Adjusted Total Cost).",
+  "final_volume_or_quantity": "Circulation numbers, sample sizes, or unit sales figures (e.g., Sample Size, Circulation (#)).",
+  "source_organisation": "Name of the primary organisation/vendor/supplier mentioned in the document",
+  "compound_name": "Name of the primary chemical compound",
+  "coupon_value": "Value of the coupon",
+  "cc_list": "Comma seperated stringified list of cc entities"
+}

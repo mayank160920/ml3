@@ -1,0 +1,14 @@
+batch_name: milestone5_funsd_batch
+config_path: configs/funsd_ner_config.yaml
+output_dir: ML5/outputs/funsd
+report_format: groundtruth
+confidence_threshold: 0.70
+top_k: 2
+fallback_top_k: 4
+fail_fast: false
+
+pair_collection:
+  kind: funsd
+  doc_a_dir: datasets/FUNSD/doc_a
+  doc_b_dir: datasets/FUNSD/doc_b
+  ground_truth_dir: datasets/FUNSD/ground_truth

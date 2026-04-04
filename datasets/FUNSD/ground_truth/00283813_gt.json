@@ -1,0 +1,52 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "5031",
+      "doc_b_value": "#5031",
+      "normalized_value": "5031",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "00283813",
+      "doc_b_value": "00283815",
+      "normalized_value": "00283813",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "7/16/68",
+      "doc_b_value": "July 16, 1968",
+      "normalized_value": "7/16/68",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "from_person",
+      "doc_a_value": "John H. M. Bohlken",
+      "doc_b_value": "JOHN H. M. BOHLKEN",
+      "normalized_value": "john h. m. bohlken",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "to_person",
+      "doc_a_value": "Mr. C. L. Tucker, Jr.",
+      "doc_b_value": "C.L. Tucker Jr.",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "Dr. A. W. Spears",
+      "doc_b_value": "A. W. Spears",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    }
+  ]
+}

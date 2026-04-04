@@ -1,0 +1,60 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "6030",
+      "doc_b_value": "#6030",
+      "normalized_value": "6030",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "00093726",
+      "doc_b_value": "00093726",
+      "normalized_value": "00093726",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "September 21, 1976",
+      "doc_b_value": "09/21/1976",
+      "normalized_value": "September 21, 1976",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "to_person",
+      "doc_a_value": "Dr. A. W. Spears",
+      "doc_b_value": "Dr. A. W. Spears",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "Dr. F. J. Schultz, Dr. H. J. Minnemeyer",
+      "doc_b_value": "Dr. H. J. Minnemeyer, Dr. F. J. Schultz",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "primary_signer_name",
+      "doc_a_value": "H. J. Minnemeyer",
+      "doc_b_value": "h. j. minnemeyer",
+      "normalized_value": "h. j. minnemeyer",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "final_volume_or_quantity",
+      "doc_a_value": "50 lbs.",
+      "doc_b_value": "500 lbs.",
+      "normalized_value": "50 lbs.",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    }
+  ]
+}

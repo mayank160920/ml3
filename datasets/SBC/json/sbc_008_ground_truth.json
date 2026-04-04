@@ -1,0 +1,362 @@
+{
+  "document_id": "sbc_008",
+  "doc_a": {
+    "type": "SBC",
+    "plan_name": "my Priority Blue Flex PPO Gold Premier 0 + Adult Dental and Vision",
+    "insurer": "Highmark Blue Cross Blue Shield",
+    "coverage_period": "01/01/2025 - 12/31/2025",
+    "file": "sbc__8_.pdf"
+  },
+  "doc_b": {
+    "type": "Benefit Grid",
+    "file": "SBCBG8.pdf",
+    "perturbations_applied": [
+      "conflict_injection",
+      "numeric_rounding_error",
+      "synonym_replacement",
+      "ocr_noise_injection"
+    ]
+  },
+  "sections": [
+    {
+      "section_name": "Plan Overview",
+      "entities": [
+        {
+          "entity_name": "Individual Deductible (Enhanced Value Network)",
+          "doc_a_value": "$0",
+          "doc_b_value": "$0",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Deductible (Enhanced Value Network)",
+          "doc_a_value": "$0",
+          "doc_b_value": "$0",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Individual Out-of-Pocket Maximum (Enhanced Value Network)",
+          "doc_a_value": "$6,550",
+          "doc_b_value": "$6,550",
+          "normalized_value": 6550,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Out-of-Pocket Maximum (Enhanced Value Network)",
+          "doc_a_value": "$13,100",
+          "doc_b_value": "$13,100",
+          "normalized_value": 13100,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Individual Deductible (Out-of-Network)",
+          "doc_a_value": "$1,500",
+          "doc_b_value": "$1,500",
+          "normalized_value": 1500,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Deductible (Out-of-Network)",
+          "doc_a_value": "$3,000",
+          "doc_b_value": "$3,000",
+          "normalized_value": 3000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Doctor Visits",
+      "entities": [
+        {
+          "entity_name": "Primary Care Visit (Enhanced Network)",
+          "doc_a_value": "$15 copay/visit",
+          "doc_b_value": "$15 copay/visit",
+          "normalized_value": 15,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Specialist Visit (Enhanced Network)",
+          "doc_a_value": "$15 copay/visit",
+          "doc_b_value": "$15 copay/visit",
+          "normalized_value": 15,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Preventive Care (Network)",
+          "doc_a_value": "No charge",
+          "doc_b_value": "No charge",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Medical Tests",
+      "entities": [
+        {
+          "entity_name": "Diagnostic Test - X-ray / Blood Work (Enhanced Network)",
+          "doc_a_value": "$35 copay/visit",
+          "doc_b_value": "$35 copay/visit",
+          "normalized_value": 35,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Imaging - CT/PET/MRI (Enhanced Network)",
+          "doc_a_value": "$400 copay/visit",
+          "doc_b_value": "$400 copay/visit",
+          "normalized_value": 400,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Emergency & Urgent Care",
+      "entities": [
+        {
+          "entity_name": "Emergency Room Care",
+          "doc_a_value": "$280 copay/visit",
+          "doc_b_value": "$280 copay/visit",
+          "normalized_value": 280,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none",
+          "notes": "Copay waived if admitted as inpatient; deductible does not apply"
+        },
+        {
+          "entity_name": "Urgent Care (Enhanced Network)",
+          "doc_a_value": "$30 copay/visit",
+          "doc_b_value": "Covered in full",
+          "normalized_value_a": 30,
+          "normalized_value_b": 0,
+          "currency": "USD",
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "conflict_injection",
+          "conflict_note": "SBC states $30 copay/visit for Enhanced Network urgent care; Doc B states 'Covered in full' — factual conflict"
+        },
+        {
+          "entity_name": "Emergency Medical Transportation (Enhanced Network)",
+          "doc_a_value": "20% coinsurance",
+          "doc_b_value": "20% coinsurance",
+          "normalized_value": 0.20,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Hospital Services",
+      "entities": [
+        {
+          "entity_name": "Hospital Stay - Facility Fee (Enhanced Network)",
+          "doc_a_value": "$525 copay/visit",
+          "doc_b_value": "$400 copay/visit",
+          "normalized_value_a": 525,
+          "normalized_value_b": 400,
+          "currency": "USD",
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "numeric_rounding_error",
+          "conflict_note": "SBC states $525 copay/visit for hospital facility; Doc B states $400 copay/visit — numeric value conflict"
+        },
+        {
+          "entity_name": "Physician / Surgeon Fees (Enhanced Network)",
+          "doc_a_value": "$10 copay/visit",
+          "doc_b_value": "$400 per copay visit",
+          "normalized_value_a": 10,
+          "normalized_value_b": 400,
+          "currency": "USD",
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "conflict_injection",
+          "conflict_note": "SBC states $10 copay/visit for physician fees; Doc B states '$400 per copay visit' — major factual conflict (likely copied from facility fee row)"
+        }
+      ]
+    },
+    {
+      "section_name": "Prescription Drugs",
+      "entities": [
+        {
+          "entity_name": "Tier 1 - Generic Drugs (Enhanced Network)",
+          "doc_a_value": "No charge per prescription",
+          "doc_b_value": "No charge",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement",
+          "conflict_note": "Doc B omits 'per prescription' qualifier — semantically equivalent"
+        },
+        {
+          "entity_name": "Tier 2 - Preferred Brand (Enhanced Network)",
+          "doc_a_value": "$25/$50/$75 copay/prescription (retail)",
+          "doc_b_value": "$25 or $50/$75 copay",
+          "normalized_value": {"30_day": 25, "60_day": 50, "90_day": 75},
+          "currency": "USD",
+          "validation_type": "semantic_equivalence",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement",
+          "conflict_note": "Doc B mixes 'or' and '/' separators — values unchanged, formatting inconsistent"
+        },
+        {
+          "entity_name": "Tier 3 - Non-Preferred Brand (Enhanced Network)",
+          "doc_a_value": "$75/$150/$225 copay/prescription (retail)",
+          "doc_b_value": "$75/$150/$225 copay",
+          "normalized_value": {"30_day": 75, "60_day": 150, "90_day": 225},
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement"
+        }
+      ]
+    },
+    {
+      "section_name": "Rehabilitation & Special Health Needs",
+      "entities": [
+        {
+          "entity_name": "Rehabilitation Services (Enhanced Network)",
+          "doc_a_value": "$40 copay/visit",
+          "doc_b_value": "$15 copay/visit",
+          "normalized_value_a": 40,
+          "normalized_value_b": 15,
+          "currency": "USD",
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "numeric_rounding_error",
+          "conflict_note": "SBC states $40 copay/visit for Enhanced Network rehab; Doc B states $15 copay/visit — factual conflict"
+        },
+        {
+          "entity_name": "Durable Medical Equipment (Enhanced Network)",
+          "doc_a_value": "20% coinsurance",
+          "doc_b_value": "20% coinsurance",
+          "normalized_value": 0.20,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Mental Health Services",
+      "entities": [
+        {
+          "entity_name": "Mental Health Outpatient Services (Enhanced Network)",
+          "doc_a_value": "$15 copay/visit",
+          "doc_b_value": "$15 copay/visit",
+          "normalized_value": 15,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Mental Health Inpatient Services (Enhanced Network)",
+          "doc_a_value": "$525 copay/visit",
+          "doc_b_value": "Fully covered",
+          "normalized_value_a": 525,
+          "normalized_value_b": 0,
+          "currency": "USD",
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "conflict_injection",
+          "conflict_note": "SBC states $525 copay/visit for inpatient MH; Doc B states 'Fully covered' — major factual conflict"
+        }
+      ]
+    }
+  ],
+  "perturbation_log": [
+    {
+      "entity": "Urgent Care",
+      "transformation": "conflict_injection",
+      "original": "$30 copay/visit",
+      "perturbed": "Covered in full",
+      "impact": "FACTUAL MISMATCH — $30 cost eliminated"
+    },
+    {
+      "entity": "Hospital Stay - Facility Fee",
+      "transformation": "numeric_rounding_error",
+      "original": "$525 copay/visit",
+      "perturbed": "$400 copay/visit",
+      "impact": "FACTUAL MISMATCH — underreported by $125"
+    },
+    {
+      "entity": "Physician / Surgeon Fees",
+      "transformation": "conflict_injection",
+      "original": "$10 copay/visit",
+      "perturbed": "$400 per copay visit",
+      "impact": "FACTUAL MISMATCH — likely row-swap error, massively inflated value"
+    },
+    {
+      "entity": "Rehabilitation Services",
+      "transformation": "numeric_rounding_error",
+      "original": "$40 copay/visit",
+      "perturbed": "$15 copay/visit",
+      "impact": "FACTUAL MISMATCH — underreported by $25"
+    },
+    {
+      "entity": "Mental Health Inpatient Services",
+      "transformation": "conflict_injection",
+      "original": "$525 copay/visit",
+      "perturbed": "Fully covered",
+      "impact": "FACTUAL MISMATCH — $525 cost eliminated"
+    },
+    {
+      "entity": "Tier 1 - Generic Drugs",
+      "transformation": "synonym_replacement",
+      "original": "No charge per prescription",
+      "perturbed": "No charge",
+      "impact": "minor qualifier omission, value unchanged"
+    }
+  ],
+  "summary": {
+    "total_entities": 20,
+    "matches": 15,
+    "mismatches": 5,
+    "conflicts": 5,
+    "perturbations_applied": 6,
+    "validation_scenarios_covered": [
+      "exact_match",
+      "semantic_equivalence",
+      "conflict",
+      "numeric_rounding_error",
+      "synonym_replacement",
+      "conflict_injection"
+    ]
+  }
+}

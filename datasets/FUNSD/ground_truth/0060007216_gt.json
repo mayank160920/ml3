@@ -1,0 +1,68 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "PROJECT INITIATION FORM",
+      "doc_b_value": "project initiation form",
+      "normalized_value": "project initiation form",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "ATX02 0226607",
+      "doc_b_value": "ATX02 0226609",
+      "normalized_value": null,
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "April 30, 1985",
+      "doc_b_value": "04/30/1985",
+      "normalized_value": "April 30, 1985",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_no_or_code",
+      "doc_a_value": "PMRM",
+      "doc_b_value": "PMRM",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_name",
+      "doc_a_value": "PALL MALL Regular Menthol",
+      "doc_b_value": "Pall Mall Reg. Menthol",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_lead",
+      "doc_a_value": "J. F. Anders",
+      "doc_b_value": "Anders, J. F.",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "primary_signer_name",
+      "doc_a_value": "R. S. Sprinkle, III",
+      "doc_b_value": "R. S. Sprinkle, III",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "RSS, RDC, PHL, PRC, BMC, Records, Project Leader, Other Personnel Assigned",
+      "doc_b_value": "RSS, RDC, PHL, PRC, BMC, Records, Proj. Leader, Others Assigned",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    }
+  ]
+}

@@ -1,0 +1,1060 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "CMSVS API",
+    "description": "Configurable Multimodal Semantic Validation System — Document Intelligence API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "Health Check",
+        "description": "Check API health and configuration status.",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/configs": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "List Configs",
+        "description": "List all available configuration files.",
+        "operationId": "list_configs_configs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/configs/{config_name}": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "Get Config",
+        "description": "Get full details of a configuration file including all sections\nand entity definitions.",
+        "operationId": "get_config_configs__config_name__get",
+        "parameters": [
+          {
+            "name": "config_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Config Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigDetailResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/extract": {
+      "post": {
+        "tags": [
+          "Extraction"
+        ],
+        "summary": "Extract Entities",
+        "description": "Extract named entities from a single document.\n\nAccepts PDF or image files. Routes to the appropriate pipeline\n(RAG for PDF, direct MLLM for images) automatically.",
+        "operationId": "extract_entities_extract_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_extract_entities_extract_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtractionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/validate": {
+      "post": {
+        "tags": [
+          "Validation"
+        ],
+        "summary": "Validate Documents",
+        "description": "Validate a document pair end-to-end.\n\nExtracts entities from both documents then runs section-wise\nChain-of-Thought semantic validation.\n\nReturns per-entity validation status, reasoning, and confidence scores.",
+        "operationId": "validate_documents_validate_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_validate_documents_validate_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/validate/gt": {
+      "post": {
+        "tags": [
+          "Validation"
+        ],
+        "summary": "Validate Documents Groundtruth",
+        "description": "Validate a document pair and return output in M2 ground truth format.\n\nUsed for direct comparison against dataset ground truth files\nfor M5 evaluation metrics.",
+        "operationId": "validate_documents_groundtruth_validate_gt_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_validate_documents_groundtruth_validate_gt_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroundTruthResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Body_extract_entities_extract_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File",
+            "description": "PDF or image document"
+          },
+          "config_name": {
+            "type": "string",
+            "title": "Config Name",
+            "description": "Config name (e.g. funsd_ner_config)"
+          },
+          "confidence_threshold": {
+            "type": "number",
+            "title": "Confidence Threshold",
+            "description": "Minimum confidence for review flagging",
+            "default": 0.75
+          }
+        },
+        "type": "object",
+        "required": [
+          "file",
+          "config_name"
+        ],
+        "title": "Body_extract_entities_extract_post"
+      },
+      "Body_validate_documents_groundtruth_validate_gt_post": {
+        "properties": {
+          "doc_a": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "Doc A",
+            "description": "Document A (PDF or image)"
+          },
+          "doc_b": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "Doc B",
+            "description": "Document B (PDF or image)"
+          },
+          "config_name": {
+            "type": "string",
+            "title": "Config Name",
+            "description": "Config name"
+          },
+          "doc_a_name": {
+            "type": "string",
+            "title": "Doc A Name",
+            "default": "Document A"
+          },
+          "doc_b_name": {
+            "type": "string",
+            "title": "Doc B Name",
+            "default": "Document B"
+          },
+          "confidence_threshold": {
+            "type": "number",
+            "title": "Confidence Threshold",
+            "default": 0.75
+          }
+        },
+        "type": "object",
+        "required": [
+          "doc_a",
+          "doc_b",
+          "config_name"
+        ],
+        "title": "Body_validate_documents_groundtruth_validate_gt_post"
+      },
+      "Body_validate_documents_validate_post": {
+        "properties": {
+          "doc_a": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "Doc A",
+            "description": "Document A (PDF or image)"
+          },
+          "doc_b": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "Doc B",
+            "description": "Document B (PDF or image)"
+          },
+          "config_name": {
+            "type": "string",
+            "title": "Config Name",
+            "description": "Config name"
+          },
+          "doc_a_name": {
+            "type": "string",
+            "title": "Doc A Name",
+            "description": "Label for Document A",
+            "default": "Document A"
+          },
+          "doc_b_name": {
+            "type": "string",
+            "title": "Doc B Name",
+            "description": "Label for Document B",
+            "default": "Document B"
+          },
+          "confidence_threshold": {
+            "type": "number",
+            "title": "Confidence Threshold",
+            "description": "Minimum confidence for review flagging",
+            "default": 0.75
+          }
+        },
+        "type": "object",
+        "required": [
+          "doc_a",
+          "doc_b",
+          "config_name"
+        ],
+        "title": "Body_validate_documents_validate_post"
+      },
+      "ConfigDetailResponse": {
+        "properties": {
+          "config_name": {
+            "type": "string",
+            "title": "Config Name"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "domain": {
+            "type": "string",
+            "title": "Domain"
+          },
+          "total_sections": {
+            "type": "integer",
+            "title": "Total Sections"
+          },
+          "total_entities": {
+            "type": "integer",
+            "title": "Total Entities"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/SectionInfo"
+            },
+            "type": "array",
+            "title": "Sections"
+          }
+        },
+        "type": "object",
+        "required": [
+          "config_name",
+          "version",
+          "domain",
+          "total_sections",
+          "total_entities",
+          "sections"
+        ],
+        "title": "ConfigDetailResponse"
+      },
+      "ConfigListResponse": {
+        "properties": {
+          "configs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Configs"
+          }
+        },
+        "type": "object",
+        "required": [
+          "configs"
+        ],
+        "title": "ConfigListResponse"
+      },
+      "EntityInfo": {
+        "properties": {
+          "entity_name": {
+            "type": "string",
+            "title": "Entity Name"
+          },
+          "entity_description": {
+            "type": "string",
+            "title": "Entity Description"
+          },
+          "entity_extraction_logic": {
+            "type": "string",
+            "title": "Entity Extraction Logic"
+          },
+          "entity_example_value": {
+            "type": "string",
+            "title": "Entity Example Value"
+          },
+          "data_type": {
+            "type": "string",
+            "title": "Data Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_name",
+          "entity_description",
+          "entity_extraction_logic",
+          "entity_example_value",
+          "data_type"
+        ],
+        "title": "EntityInfo"
+      },
+      "ExtractedEntity": {
+        "properties": {
+          "entity_name": {
+            "type": "string",
+            "title": "Entity Name"
+          },
+          "extracted_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Extracted Value"
+          },
+          "extraction_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Extraction Status"
+          },
+          "entity_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Type"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence",
+            "default": 0
+          },
+          "source_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Page"
+          },
+          "source_region": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Region"
+          },
+          "review_required": {
+            "type": "boolean",
+            "title": "Review Required",
+            "default": false
+          },
+          "fallback_triggered": {
+            "type": "boolean",
+            "title": "Fallback Triggered",
+            "default": false
+          },
+          "expression_audit": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expression Audit"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_name"
+        ],
+        "title": "ExtractedEntity"
+      },
+      "ExtractionResponse": {
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "title": "Job Id"
+          },
+          "document_path": {
+            "type": "string",
+            "title": "Document Path"
+          },
+          "config_name": {
+            "type": "string",
+            "title": "Config Name"
+          },
+          "total_entities": {
+            "type": "integer",
+            "title": "Total Entities"
+          },
+          "found_count": {
+            "type": "integer",
+            "title": "Found Count"
+          },
+          "review_count": {
+            "type": "integer",
+            "title": "Review Count"
+          },
+          "processing_time_s": {
+            "type": "number",
+            "title": "Processing Time S"
+          },
+          "entities": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ExtractedEntity"
+            },
+            "type": "object",
+            "title": "Entities"
+          }
+        },
+        "type": "object",
+        "required": [
+          "job_id",
+          "document_path",
+          "config_name",
+          "total_entities",
+          "found_count",
+          "review_count",
+          "processing_time_s",
+          "entities"
+        ],
+        "title": "ExtractionResponse"
+      },
+      "GroundTruthEntity": {
+        "properties": {
+          "entity_name": {
+            "type": "string",
+            "title": "Entity Name"
+          },
+          "doc_a_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doc A Value"
+          },
+          "doc_b_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doc B Value"
+          },
+          "normalized_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Normalized Value"
+          },
+          "validation_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Validation Type"
+          },
+          "validation_result": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Validation Result"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_name"
+        ],
+        "title": "GroundTruthEntity"
+      },
+      "GroundTruthResponse": {
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "title": "Job Id"
+          },
+          "doc_a_name": {
+            "type": "string",
+            "title": "Doc A Name"
+          },
+          "doc_b_name": {
+            "type": "string",
+            "title": "Doc B Name"
+          },
+          "config_name": {
+            "type": "string",
+            "title": "Config Name"
+          },
+          "processing_time_s": {
+            "type": "number",
+            "title": "Processing Time S"
+          },
+          "entities": {
+            "items": {
+              "$ref": "#/components/schemas/GroundTruthEntity"
+            },
+            "type": "array",
+            "title": "Entities"
+          }
+        },
+        "type": "object",
+        "required": [
+          "job_id",
+          "doc_a_name",
+          "doc_b_name",
+          "config_name",
+          "processing_time_s",
+          "entities"
+        ],
+        "title": "GroundTruthResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "default": "ok"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version",
+            "default": "1.0.0"
+          },
+          "nvidia_key_set": {
+            "type": "boolean",
+            "title": "Nvidia Key Set",
+            "default": false
+          },
+          "configs_available": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Configs Available",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "HealthResponse"
+      },
+      "SectionInfo": {
+        "properties": {
+          "section_name": {
+            "type": "string",
+            "title": "Section Name"
+          },
+          "section_description": {
+            "type": "string",
+            "title": "Section Description"
+          },
+          "section_keywords": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Section Keywords"
+          },
+          "entities": {
+            "items": {
+              "$ref": "#/components/schemas/EntityInfo"
+            },
+            "type": "array",
+            "title": "Entities"
+          }
+        },
+        "type": "object",
+        "required": [
+          "section_name",
+          "section_description",
+          "section_keywords",
+          "entities"
+        ],
+        "title": "SectionInfo"
+      },
+      "ValidationEntityResult": {
+        "properties": {
+          "entity_name": {
+            "type": "string",
+            "title": "Entity Name"
+          },
+          "section_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Section Name"
+          },
+          "doc_a_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doc A Value"
+          },
+          "doc_b_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doc B Value"
+          },
+          "doc_a_normalized": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doc A Normalized"
+          },
+          "doc_b_normalized": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doc B Normalized"
+          },
+          "validation_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Validation Status"
+          },
+          "discrepancy_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Discrepancy Type"
+          },
+          "reasoning": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reasoning"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence",
+            "default": 0
+          },
+          "review_required": {
+            "type": "boolean",
+            "title": "Review Required",
+            "default": false
+          },
+          "fast_path_match": {
+            "type": "boolean",
+            "title": "Fast Path Match",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_name"
+        ],
+        "title": "ValidationEntityResult"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "ValidationResponse": {
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "title": "Job Id"
+          },
+          "doc_a_name": {
+            "type": "string",
+            "title": "Doc A Name"
+          },
+          "doc_b_name": {
+            "type": "string",
+            "title": "Doc B Name"
+          },
+          "config_name": {
+            "type": "string",
+            "title": "Config Name"
+          },
+          "processing_time_s": {
+            "type": "number",
+            "title": "Processing Time S"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/ValidationSummary"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationSectionResult"
+            },
+            "type": "array",
+            "title": "Sections"
+          },
+          "doc_a_entities": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ExtractedEntity"
+            },
+            "type": "object",
+            "title": "Doc A Entities"
+          },
+          "doc_b_entities": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ExtractedEntity"
+            },
+            "type": "object",
+            "title": "Doc B Entities"
+          }
+        },
+        "type": "object",
+        "required": [
+          "job_id",
+          "doc_a_name",
+          "doc_b_name",
+          "config_name",
+          "processing_time_s",
+          "summary",
+          "sections",
+          "doc_a_entities",
+          "doc_b_entities"
+        ],
+        "title": "ValidationResponse"
+      },
+      "ValidationSectionResult": {
+        "properties": {
+          "section_name": {
+            "type": "string",
+            "title": "Section Name"
+          },
+          "match_count": {
+            "type": "integer",
+            "title": "Match Count"
+          },
+          "mismatch_count": {
+            "type": "integer",
+            "title": "Mismatch Count"
+          },
+          "entities": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationEntityResult"
+            },
+            "type": "array",
+            "title": "Entities"
+          }
+        },
+        "type": "object",
+        "required": [
+          "section_name",
+          "match_count",
+          "mismatch_count",
+          "entities"
+        ],
+        "title": "ValidationSectionResult"
+      },
+      "ValidationSummary": {
+        "properties": {
+          "total_entities": {
+            "type": "integer",
+            "title": "Total Entities"
+          },
+          "total_matches": {
+            "type": "integer",
+            "title": "Total Matches"
+          },
+          "total_mismatches": {
+            "type": "integer",
+            "title": "Total Mismatches"
+          },
+          "total_ineligible": {
+            "type": "integer",
+            "title": "Total Ineligible"
+          },
+          "match_rate": {
+            "type": "number",
+            "title": "Match Rate"
+          },
+          "review_required": {
+            "type": "integer",
+            "title": "Review Required"
+          },
+          "fast_path_matches": {
+            "type": "integer",
+            "title": "Fast Path Matches"
+          },
+          "sections_processed": {
+            "type": "integer",
+            "title": "Sections Processed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total_entities",
+          "total_matches",
+          "total_mismatches",
+          "total_ineligible",
+          "match_rate",
+          "review_required",
+          "fast_path_matches",
+          "sections_processed"
+        ],
+        "title": "ValidationSummary"
+      }
+    }
+  }
+}

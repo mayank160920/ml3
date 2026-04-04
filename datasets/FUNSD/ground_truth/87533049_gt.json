@@ -1,0 +1,92 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "COUPON CODE REGISTRATION FORM",
+      "doc_b_value": "Coupon Code Registration Form",
+      "normalized_value": "coupon code registration form",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "530430",
+      "doc_b_value": "530430",
+      "normalized_value": "530430",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "87533049",
+      "doc_b_value": "87533049",
+      "normalized_value": "87533049",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "May 3, 1990",
+      "doc_b_value": "05/03/1990",
+      "normalized_value": "May 3, 1990",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "date_issued",
+      "doc_a_value": "10/90",
+      "doc_b_value": "October 1990",
+      "normalized_value": "10/90",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "date_expiry",
+      "doc_a_value": "6/30/91",
+      "doc_b_value": "June 30, 1991",
+      "normalized_value": "6/30/91",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "coupon_value",
+      "doc_a_value": "$2.00",
+      "doc_b_value": "2.00 USD",
+      "normalized_value": "$2.00",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "from_person",
+      "doc_a_value": "J. La Valle",
+      "doc_b_value": "J. LaValle",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "to_person",
+      "doc_a_value": "S. A. Rapisarldi",
+      "doc_b_value": "s. a. rapisarldi",
+      "normalized_value": "s. a. rapisarldi",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "R. G. Ryan, McGlynn",
+      "doc_b_value": "McGlynn, R. G. Ryan",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "final_volume_or_quantity",
+      "doc_a_value": "1,213,400",
+      "doc_b_value": "1,213,000",
+      "normalized_value": "1,213,400",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    }
+  ]
+}

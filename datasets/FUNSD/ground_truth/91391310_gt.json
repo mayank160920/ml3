@@ -1,0 +1,92 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "COUPON CODE REGISTRATION FORM",
+      "doc_b_value": "Coupon Code Registration Form",
+      "normalized_value": "coupon code registration form",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "8470",
+      "doc_b_value": "8470",
+      "normalized_value": "8470",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "91391310",
+      "doc_b_value": "91391310",
+      "normalized_value": "91391310",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "8/06/93",
+      "doc_b_value": "August 6, 1993",
+      "normalized_value": "8/06/93",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "date_issued",
+      "doc_a_value": "10/11/93",
+      "doc_b_value": "12/15/93",
+      "normalized_value": "10/11/93",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "date_expiry",
+      "doc_a_value": "6/30/94",
+      "doc_b_value": "06/30/1994",
+      "normalized_value": "6/30/94",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "coupon_value",
+      "doc_a_value": "$.50",
+      "doc_b_value": "$0.50",
+      "normalized_value": "$.50",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "from_person",
+      "doc_a_value": "M. BORSINI",
+      "doc_b_value": "M. Borsini",
+      "normalized_value": "m. borsini",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "to_person",
+      "doc_a_value": "VINCE LOSITO",
+      "doc_b_value": "Vincent Losito",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "T. BAYLIES, L. GIORDANO, V. LINDSLEY, J. SCHNEFF, S. RAPISARLDI, N. DISCENZA, E. LUNDBERG",
+      "doc_b_value": "T. Baylies, L. Giordano, V. Lindsley, J. Schneff, S. Rapisarldi, N. DISCENZA, E. LUNDBERG",
+      "normalized_value": "t. baylies, l. giordano, v. lindsley, j. schneff, s. rapisarldi, n. discenza, e. lundberg",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "final_volume_or_quantity",
+      "doc_a_value": "2,852,100 - 47,200",
+      "doc_b_value": "2852100 - 47200",
+      "normalized_value": "2,852,100 - 47,200",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    }
+  ]
+}

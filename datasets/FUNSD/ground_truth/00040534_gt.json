@@ -1,0 +1,76 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "ACUTE TOXICITY IN MICE",
+      "doc_b_value": "Acute Toxicity in Mice",
+      "normalized_value": "acute toxicity in mice",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "BIO14-23",
+      "doc_b_value": "BIO14-99",
+      "normalized_value": null,
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "00040534",
+      "doc_b_value": "00040534",
+      "normalized_value": "00040534",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "date_received",
+      "doc_a_value": "Unk.",
+      "doc_b_value": "Unknown",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "date_reported",
+      "doc_a_value": "10/6/80",
+      "doc_b_value": "October 6, 1980",
+      "normalized_value": "10/6/80",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "source_organisation",
+      "doc_a_value": "Lorillard - Organic Chemistry",
+      "doc_b_value": "Lorillard Organic Chem",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "primary_signer_name",
+      "doc_a_value": "H. S. Tong",
+      "doc_b_value": "H. S. Tong",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "Dr. H. J. Minnemeyer, Ms. L. B. Gray",
+      "doc_b_value": "H. J. Minnemeyer, L. B. Gray",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "compound_name",
+      "doc_a_value": "3-Hydroxy-3-methylbutanoic acid (Tur 13)",
+      "doc_b_value": "3-HYDROXY-3-METHYLBUTANOIC ACID (TUR 13)",
+      "normalized_value": "3-hydroxy-3-methylbutanoic acid (tur 13)",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    }
+  ]
+}

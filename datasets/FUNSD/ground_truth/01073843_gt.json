@@ -1,0 +1,76 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "AMES ASSAY FOR MUTAGENICITY",
+      "doc_b_value": "Ames Assay for Mutagenicity",
+      "normalized_value": "ames assay for mutagenicity",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "BC19-25",
+      "doc_b_value": "BC19-26",
+      "normalized_value": null,
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "01073843",
+      "doc_b_value": "01073843",
+      "normalized_value": "01073843",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "date_received",
+      "doc_a_value": "unknown",
+      "doc_b_value": "Not specified",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "date_reported",
+      "doc_a_value": "4/14/81",
+      "doc_b_value": "April 14, 1981",
+      "normalized_value": "4/14/81",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "source_organisation",
+      "doc_a_value": "Lorillard - Organic Chemistry",
+      "doc_b_value": "Lorillard Organic Chemistry",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_no_or_code",
+      "doc_a_value": "A123",
+      "doc_b_value": "A123",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "H. J. Minnemeyer, L. B. Gray",
+      "doc_b_value": "L. B. Gray, H. J. Minnemeyer",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "compound_name",
+      "doc_a_value": "Diethyl 3,3-Dimethyl-2-oxo-1,4-cyclopentanedicarboxylate",
+      "doc_b_value": "diethyl 3,3-dimethyl-2-oxo-1,4-cyclopentanedicarboxylate",
+      "normalized_value": "diethyl 3,3-dimethyl-2-oxo-1,4-cyclopentanedicarboxylate",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    }
+  ]
+}

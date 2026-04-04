@@ -1,0 +1,84 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "PROJECT SHEET",
+      "doc_b_value": "Project Sheet",
+      "normalized_value": "project sheet",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "1",
+      "doc_b_value": "2",
+      "normalized_value": "1",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "00866042",
+      "doc_b_value": "00866042",
+      "normalized_value": "00866042",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "date_issued",
+      "doc_a_value": "Oct. 11, 1983",
+      "doc_b_value": "October 11, 1983",
+      "normalized_value": "Oct. 11, 1983",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "date_received",
+      "doc_a_value": "9/28/83",
+      "doc_b_value": "1983-09-28",
+      "normalized_value": "9/28/83",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "source_organisation",
+      "doc_a_value": "HAZLETON LABORATORIES AMERICA, INC.",
+      "doc_b_value": "Hazleton Labs America, Inc.",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_no_or_code",
+      "doc_a_value": "642-138",
+      "doc_b_value": "642-138",
+      "normalized_value": "642-138",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_name",
+      "doc_a_value": "Acute Intraperitoneal Toxicity Study in Rats",
+      "doc_b_value": "Acute IP Toxicity Study in Rats",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "primary_signer_name",
+      "doc_a_value": "D. Serota",
+      "doc_b_value": "d. serota",
+      "normalized_value": "d. serota",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "DIR. OF LIFE SCIENCES, HEALTH SERVICES, COMPOUND PREP (TOX), SCIENTIFIC RES (TOX), LAB ANIMAL MEDICINE, QUALITY ASSURANCE, CONTRACTS, Sponsor",
+      "doc_b_value": "Director of Life Sciences, Health Services, Compound Prep (Tox), Scientific Res (Tox), Lab Animal Medicine, QA, Contracts, Sponsor",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    }
+  ]
+}

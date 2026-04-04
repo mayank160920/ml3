@@ -1,0 +1,307 @@
+{
+  "document_id": "sbc_006",
+  "doc_a": {
+    "type": "SBC",
+    "plan_name": "NY State Employees HMO 210 (2026)",
+    "insurer": "Highmark Blue Shield",
+    "coverage_period": "01/01/2026 - 12/31/2026",
+    "plan_type": "HMO",
+    "file": "sbc__6_.pdf"
+  },
+  "doc_b": {
+    "type": "Benefit Grid",
+    "file": "SBCBG6.pdf",
+    "perturbations_applied": [
+      "synonym_replacement",
+      "conflict_injection",
+      "numeric_rounding_error",
+      "ocr_noise_injection"
+    ]
+  },
+  "sections": [
+    {
+      "section_name": "Plan Overview",
+      "entities": [
+        {
+          "entity_name": "Individual Deductible (Network)",
+          "doc_a_value": "N/A",
+          "doc_b_value": "N/A",
+          "normalized_value": null,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Deductible (Network)",
+          "doc_a_value": "N/A",
+          "doc_b_value": "N/A",
+          "normalized_value": null,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Individual Out-of-Pocket Maximum (Network)",
+          "doc_a_value": "$3,000",
+          "doc_b_value": "$3,000",
+          "normalized_value": 3000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Out-of-Pocket Maximum (Network)",
+          "doc_a_value": "$6,000",
+          "doc_b_value": "$6,000",
+          "normalized_value": 6000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Doctor Visits",
+      "entities": [
+        {
+          "entity_name": "Primary Care Visit (Network)",
+          "doc_a_value": "$10 copay",
+          "doc_b_value": "$10 copay",
+          "normalized_value": 10,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Specialist Visit (Network)",
+          "doc_a_value": "$15 copay",
+          "doc_b_value": "$15 copay",
+          "normalized_value": 15,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Preventive Care (Network)",
+          "doc_a_value": "Covered in full",
+          "doc_b_value": "Covered in full",
+          "normalized_value": 0,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Medical Tests",
+      "entities": [
+        {
+          "entity_name": "Diagnostic Test - X-ray (Network)",
+          "doc_a_value": "$15 copay for x-ray; Covered in full for blood work",
+          "doc_b_value": "$15 copay for x-ray; Covered in full for blo",
+          "normalized_value": 15,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "ocr_noise_injection",
+          "conflict_note": "Doc B truncates 'blood work' to 'blo' — OCR artifact, underlying value unchanged"
+        },
+        {
+          "entity_name": "Imaging - CT/PET/MRI (Network)",
+          "doc_a_value": "$15 copay",
+          "doc_b_value": "$15 copay",
+          "normalized_value": 15,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Emergency & Urgent Care",
+      "entities": [
+        {
+          "entity_name": "Emergency Room Care",
+          "doc_a_value": "$100 copay",
+          "doc_b_value": "$100 copay",
+          "normalized_value": 100,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none",
+          "notes": "Copay waived if admitted as inpatient; OON covered as in-network"
+        },
+        {
+          "entity_name": "Urgent Care (Network)",
+          "doc_a_value": "Covered in full",
+          "doc_b_value": "Covered in full",
+          "normalized_value": 0,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Hospital Services",
+      "entities": [
+        {
+          "entity_name": "Hospital Stay - Facility Fee (Network)",
+          "doc_a_value": "Covered in full",
+          "doc_b_value": "Fully covered",
+          "normalized_value": 0,
+          "validation_type": "semantic_equivalence",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement",
+          "conflict_note": "'Covered in full' vs 'Fully covered' — semantically equivalent"
+        },
+        {
+          "entity_name": "Physician / Surgeon Fees (Network)",
+          "doc_a_value": "Covered in full",
+          "doc_b_value": "Covered in full",
+          "normalized_value": 0,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Prescription Drugs",
+      "entities": [
+        {
+          "entity_name": "Generic Drugs - Tier 1 (Network)",
+          "doc_a_value": "$5/$10/$15 copay/prescription (retail)",
+          "doc_b_value": "$5/$10/$15 copay",
+          "normalized_value": {"30_day": 5, "60_day": 10, "90_day": 15},
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement"
+        },
+        {
+          "entity_name": "Preferred Brand Drugs - Tier 2 (Network)",
+          "doc_a_value": "$30/$60/$90 copay/prescription (retail)",
+          "doc_b_value": "$30/$60/$90 copay",
+          "normalized_value": {"30_day": 30, "60_day": 60, "90_day": 90},
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement"
+        },
+        {
+          "entity_name": "Non-Preferred Brand Drugs - Tier 3 (Network)",
+          "doc_a_value": "$60/$120/$180 copay/prescription (retail)",
+          "doc_b_value": "$60 or $120 or $180 copay",
+          "normalized_value": {"30_day": 60, "60_day": 120, "90_day": 180},
+          "currency": "USD",
+          "validation_type": "semantic_equivalence",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement",
+          "conflict_note": "Separator changed from '/' to 'or' — semantically equivalent"
+        }
+      ]
+    },
+    {
+      "section_name": "Rehabilitation & Special Health Needs",
+      "entities": [
+        {
+          "entity_name": "Rehabilitation Services (Network)",
+          "doc_a_value": "$15 copay",
+          "doc_b_value": "Covered in full",
+          "normalized_value_a": 15,
+          "normalized_value_b": 0,
+          "currency": "USD",
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "conflict_injection",
+          "conflict_note": "SBC: $15 copay; Doc B: Covered in full — FACTUAL MISMATCH"
+        },
+        {
+          "entity_name": "Durable Medical Equipment (Network)",
+          "doc_a_value": "50% coinsurance",
+          "doc_b_value": "Covered in full",
+          "normalized_value_a": 0.50,
+          "normalized_value_b": 0,
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "conflict_injection",
+          "conflict_note": "SBC: 50% coinsurance; Doc B: Covered in full — MAJOR FACTUAL MISMATCH"
+        }
+      ]
+    },
+    {
+      "section_name": "Mental Health Services",
+      "entities": [
+        {
+          "entity_name": "Mental Health Outpatient Services (Network)",
+          "doc_a_value": "$10 copay",
+          "doc_b_value": "$10 copay",
+          "normalized_value": 10,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Mental Health Inpatient Services (Network)",
+          "doc_a_value": "Covered in full",
+          "doc_b_value": "Covered in full",
+          "normalized_value": 0,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    }
+  ],
+  "perturbation_log": [
+    {
+      "entity": "Diagnostic Test - X-ray",
+      "transformation": "ocr_noise_injection",
+      "original": "Covered in full for blood work",
+      "perturbed": "Covered in full for blo",
+      "impact": "truncation artifact — blood work value still implied"
+    },
+    {
+      "entity": "Hospital Stay - Facility Fee",
+      "transformation": "synonym_replacement",
+      "original": "Covered in full",
+      "perturbed": "Fully covered",
+      "impact": "wording change — semantically equivalent"
+    },
+    {
+      "entity": "Rehabilitation Services",
+      "transformation": "conflict_injection",
+      "original": "$15 copay",
+      "perturbed": "Covered in full",
+      "impact": "FACTUAL MISMATCH — member cost incorrectly set to zero"
+    },
+    {
+      "entity": "Durable Medical Equipment",
+      "transformation": "conflict_injection",
+      "original": "50% coinsurance",
+      "perturbed": "Covered in full",
+      "impact": "FACTUAL MISMATCH — 50% cost share eliminated"
+    }
+  ],
+  "summary": {
+    "total_entities": 19,
+    "matches": 17,
+    "mismatches": 2,
+    "conflicts": 2,
+    "perturbations_applied": 4,
+    "validation_scenarios_covered": [
+      "exact_match",
+      "semantic_equivalence",
+      "conflict",
+      "ocr_noise_injection",
+      "synonym_replacement"
+    ]
+  }
+}

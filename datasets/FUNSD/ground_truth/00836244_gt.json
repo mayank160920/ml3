@@ -1,0 +1,76 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "AMES ASSAY FOR MUTAGENICITY",
+      "doc_b_value": "Ames Assay for Mutagenicity",
+      "normalized_value": "ames assay for mutagenicity",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "BIO7-24",
+      "doc_b_value": "BIO-7-24",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "00836244",
+      "doc_b_value": "00836245",
+      "normalized_value": "00836244",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "date_received",
+      "doc_a_value": "9/3/80",
+      "doc_b_value": "09/03/1980",
+      "normalized_value": "9/3/80",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "date_reported",
+      "doc_a_value": "10/10/80",
+      "doc_b_value": "10/10/80",
+      "normalized_value": "10/10/80",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "source_organisation",
+      "doc_a_value": "Lorillard - Organic Chemistry",
+      "doc_b_value": "Lorillard Organic Chemistry Dept.",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_no_or_code",
+      "doc_a_value": "OR61-2",
+      "doc_b_value": "OR61-2",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "Dr. H. J. Minnemeyer, Ms. L. B. Gray",
+      "doc_b_value": "H.J. Minnemeyer, L.B. Gray",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "compound_name",
+      "doc_a_value": "2,4-Dihydroxypyridine",
+      "doc_b_value": "2,4-dihydroxypyridine",
+      "normalized_value": "2,4-dihydroxypyridine",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    }
+  ]
+}

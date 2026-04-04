@@ -1,0 +1,320 @@
+{
+  "document_id": "sbc_001",
+  "doc_a": {
+    "type": "SBC",
+    "plan_name": "my Blue Access PPO Gold 0",
+    "insurer": "Highmark Blue Cross Blue Shield",
+    "coverage_period": "01/01/2022 - 12/31/2022",
+    "file": "sbc__1_.pdf"
+  },
+  "doc_b": {
+    "type": "Benefit Grid",
+    "file": "SBCBG1.pdf",
+    "perturbations_applied": [
+      "numeric_rounding_error",
+      "synonym_replacement",
+      "unit_swap",
+      "table_to_paragraph_conversion"
+    ]
+  },
+  "sections": [
+    {
+      "section_name": "Plan Overview",
+      "entities": [
+        {
+          "entity_name": "Individual Deductible (Network)",
+          "doc_a_value": "$0",
+          "doc_b_value": "$0",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Deductible (Network)",
+          "doc_a_value": "$0",
+          "doc_b_value": "$0",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Individual Out-of-Pocket Maximum (Network)",
+          "doc_a_value": "$7,500",
+          "doc_b_value": "$7,500",
+          "normalized_value": 7500,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Out-of-Pocket Maximum (Network)",
+          "doc_a_value": "$15,000",
+          "doc_b_value": "$15,000",
+          "normalized_value": 15000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Individual Deductible (Out-of-Network)",
+          "doc_a_value": "$2,000",
+          "doc_b_value": "$2,000",
+          "normalized_value": 2000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Deductible (Out-of-Network)",
+          "doc_a_value": "$4,000",
+          "doc_b_value": "$4,000",
+          "normalized_value": 4000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Doctor Visits",
+      "entities": [
+        {
+          "entity_name": "Primary Care Visit (Network)",
+          "doc_a_value": "$20 copay/visit",
+          "doc_b_value": "$20 copay/visit",
+          "normalized_value": 20,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Specialist Visit (Network)",
+          "doc_a_value": "$20 copay/visit",
+          "doc_b_value": "$20 - copay/visit",
+          "normalized_value": 20,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "ocr_noise_injection",
+          "conflict_note": "Doc B contains OCR artifact dash in '$20 - copay/visit'"
+        },
+        {
+          "entity_name": "Preventive Care (Network)",
+          "doc_a_value": "No charge",
+          "doc_b_value": "No charge",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Primary Care Visit (Out-of-Network)",
+          "doc_a_value": "50% coinsurance",
+          "doc_b_value": "50% coinsurance",
+          "normalized_value": 0.50,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Medical Tests",
+      "entities": [
+        {
+          "entity_name": "Diagnostic Test - X-ray / Blood Work (Network)",
+          "doc_a_value": "$35 copay/visit",
+          "doc_b_value": "$35 copay/visit",
+          "normalized_value": 35,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Imaging - CT/PET/MRI (Network)",
+          "doc_a_value": "$400 copay/visit",
+          "doc_b_value": "$400 copay/visit",
+          "normalized_value": 400,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Emergency & Urgent Care",
+      "entities": [
+        {
+          "entity_name": "Emergency Room Care",
+          "doc_a_value": "$300 copay/visit",
+          "doc_b_value": "$300 copay/visit",
+          "normalized_value": 300,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none",
+          "notes": "Deductible does not apply; copay waived if admitted as inpatient"
+        },
+        {
+          "entity_name": "Urgent Care",
+          "doc_a_value": "$40 copay/visit",
+          "doc_b_value": "$40 copay/visit",
+          "normalized_value": 40,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none",
+          "notes": "Deductible does not apply"
+        },
+        {
+          "entity_name": "Emergency Medical Transportation",
+          "doc_a_value": "30% coinsurance",
+          "doc_b_value": "30% coinsurance",
+          "normalized_value": 0.30,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Hospital Services",
+      "entities": [
+        {
+          "entity_name": "Hospital Stay - Facility Fee (Network)",
+          "doc_a_value": "$500 copay/visit",
+          "doc_b_value": "$500 copay/visit",
+          "normalized_value": 500,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Physician / Surgeon Fees (Network)",
+          "doc_a_value": "30% coinsurance",
+          "doc_b_value": "30% coinsurance",
+          "normalized_value": 0.30,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Prescription Drugs",
+      "entities": [
+        {
+          "entity_name": "Tier 1 - Generic Drugs (Network)",
+          "doc_a_value": "No charge per prescription",
+          "doc_b_value": "No charge per prescription",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none",
+          "notes": "Up to 31/60/90-day supply retail pharmacy"
+        },
+        {
+          "entity_name": "Tier 2 - Preferred Brand (Network)",
+          "doc_a_value": "$30/$60/$90 copay per prescription (retail)",
+          "doc_b_value": "$30/$60/$90 copay per prescription",
+          "normalized_value": {"30_day": 30, "60_day": 60, "90_day": 90},
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Tier 3 - Non-Preferred Brand (Network)",
+          "doc_a_value": "$150/$300/$450 copay per prescription (retail)",
+          "doc_b_value": "$150/$300/$450 copay per prescription",
+          "normalized_value": {"30_day": 150, "60_day": 300, "90_day": 450},
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Rehabilitation & Special Health Needs",
+      "entities": [
+        {
+          "entity_name": "Rehabilitation Services (Network)",
+          "doc_a_value": "$45 copay/visit",
+          "doc_b_value": "$45 copay/visit",
+          "normalized_value": 45,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none",
+          "notes": "30 combined PT/OT visits and 30 speech therapy visits per benefit period"
+        },
+        {
+          "entity_name": "Durable Medical Equipment (Network)",
+          "doc_a_value": "30% coinsurance",
+          "doc_b_value": "30% coinsurance",
+          "normalized_value": 0.30,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Mental Health Services",
+      "entities": [
+        {
+          "entity_name": "Mental Health Outpatient Services (Network)",
+          "doc_a_value": "$20 copay/visit",
+          "doc_b_value": "$20 copay/visit",
+          "normalized_value": 20,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Mental Health Inpatient Services (Network)",
+          "doc_a_value": "$500 copay/visit",
+          "doc_b_value": "$500 copay/visit",
+          "normalized_value": 500,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    }
+  ],
+  "perturbation_log": [
+    {
+      "entity": "Specialist Visit",
+      "transformation": "ocr_noise_injection",
+      "original": "$20 copay/visit",
+      "perturbed": "$20 - copay/visit",
+      "impact": "minor formatting artifact, value unchanged"
+    }
+  ],
+  "summary": {
+    "total_entities": 20,
+    "matches": 20,
+    "mismatches": 0,
+    "conflicts": 0,
+    "perturbations_applied": 1,
+    "validation_scenarios_covered": ["exact_match", "ocr_noise_injection"]
+  }
+}

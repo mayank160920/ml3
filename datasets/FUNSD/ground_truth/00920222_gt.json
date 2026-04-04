@@ -1,0 +1,68 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "PURCHASE REQUISITION",
+      "doc_b_value": "purchase requisition",
+      "normalized_value": "purchase requisition",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "P.O. 1534 REV.10/79 LT-10-79",
+      "doc_b_value": "PO 1534 REV 10/T9 LT-10-79",
+      "normalized_value": null,
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "00920222",
+      "doc_b_value": "00920222",
+      "normalized_value": "00920222",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "March 27, 1984",
+      "doc_b_value": "03/27/1984",
+      "normalized_value": "March 27, 1984",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "source_organisation",
+      "doc_a_value": "Borriston Laboratories, Inc.",
+      "doc_b_value": "Borriston Labs Inc",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "primary_signer_name",
+      "doc_a_value": "H. J. Minnemeyer",
+      "doc_b_value": "H. J. Minnemeyer",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "to_person",
+      "doc_a_value": "Dr. Connie Stone",
+      "doc_b_value": "Dr. Connie Stone",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "final_amount",
+      "doc_a_value": "$4100",
+      "doc_b_value": "$4800",
+      "normalized_value": "$4100",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    }
+  ]
+}

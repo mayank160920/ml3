@@ -1,0 +1,323 @@
+{
+  "document_id": "sbc_004",
+  "doc_a": {
+    "type": "SBC",
+    "plan_name": "my Blue Access WV PPO Standard Extra Savings Silver 700",
+    "insurer": "Highmark West Virginia Inc.",
+    "coverage_period": "01/01/2026 - 12/31/2026",
+    "file": "sbc__4_.pdf"
+  },
+  "doc_b": {
+    "type": "Benefit Grid",
+    "file": "SBCBG4.pdf",
+    "perturbations_applied": [
+      "numeric_rounding_error",
+      "unit_swap",
+      "ocr_noise_injection",
+      "conflict_injection"
+    ]
+  },
+  "sections": [
+    {
+      "section_name": "Plan Overview",
+      "entities": [
+        {
+          "entity_name": "Individual Deductible (Network)",
+          "doc_a_value": "$700",
+          "doc_b_value": "$700",
+          "normalized_value": 700,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Deductible (Network)",
+          "doc_a_value": "$1,400",
+          "doc_b_value": "$1,400",
+          "normalized_value": 1400,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Individual Out-of-Pocket Maximum (Network)",
+          "doc_a_value": "$3,300",
+          "doc_b_value": "$3,300",
+          "normalized_value": 3300,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Out-of-Pocket Maximum (Network)",
+          "doc_a_value": "$6,600",
+          "doc_b_value": "$6,600",
+          "normalized_value": 6600,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Individual Deductible (Out-of-Network)",
+          "doc_a_value": "$1,500",
+          "doc_b_value": "$1,500",
+          "normalized_value": 1500,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Deductible (Out-of-Network)",
+          "doc_a_value": "$3,000",
+          "doc_b_value": "$3,000",
+          "normalized_value": 3000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Doctor Visits",
+      "entities": [
+        {
+          "entity_name": "Primary Care Visit (Network)",
+          "doc_a_value": "$20 copay/visit",
+          "doc_b_value": "$20 copay/visit",
+          "normalized_value": 20,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none",
+          "notes": "Deductible does not apply"
+        },
+        {
+          "entity_name": "Specialist Visit (Network)",
+          "doc_a_value": "$40 copay/visit",
+          "doc_b_value": "$40 copay/ visit",
+          "normalized_value": 40,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "ocr_noise_injection",
+          "conflict_note": "Space artifact in Doc B: '$40 copay/ visit'",
+          "notes": "Deductible does not apply"
+        },
+        {
+          "entity_name": "Preventive Care (Network)",
+          "doc_a_value": "No charge",
+          "doc_b_value": "No charge",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Medical Tests",
+      "entities": [
+        {
+          "entity_name": "Diagnostic Test - X-ray / Blood Work (Network)",
+          "doc_a_value": "30% coinsurance",
+          "doc_b_value": "30 percent coinsurance",
+          "normalized_value": 0.30,
+          "validation_type": "semantic_equivalence",
+          "validation_result": "match",
+          "perturbation": "unit_swap",
+          "conflict_note": "Doc B uses 'percent' instead of '%' symbol — semantically equivalent"
+        },
+        {
+          "entity_name": "Imaging - CT/PET/MRI (Network)",
+          "doc_a_value": "30% coinsurance",
+          "doc_b_value": "30% coinsurance",
+          "normalized_value": 0.30,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Emergency & Urgent Care",
+      "entities": [
+        {
+          "entity_name": "Emergency Room Care (Network)",
+          "doc_a_value": "30% coinsurance",
+          "doc_b_value": "30% coinsurance",
+          "normalized_value": 0.30,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none",
+          "notes": "Out-of-network: subject to network deductible"
+        },
+        {
+          "entity_name": "Urgent Care",
+          "doc_a_value": "$30 copay/visit",
+          "doc_b_value": "$30 copay/visit",
+          "normalized_value": 30,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none",
+          "notes": "Deductible does not apply"
+        },
+        {
+          "entity_name": "Emergency Medical Transportation",
+          "doc_a_value": "30% coinsurance",
+          "doc_b_value": "30% coinsurance",
+          "normalized_value": 0.30,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Hospital Services",
+      "entities": [
+        {
+          "entity_name": "Hospital Stay - Facility Fee (Network)",
+          "doc_a_value": "30% coinsurance",
+          "doc_b_value": "30% coinsurance",
+          "normalized_value": 0.30,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Physician / Surgeon Fees (Network)",
+          "doc_a_value": "30% coinsurance",
+          "doc_b_value": "30% coinsurance",
+          "normalized_value": 0.30,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Prescription Drugs",
+      "entities": [
+        {
+          "entity_name": "Tier 1 - Generic Drugs (Network)",
+          "doc_a_value": "$10/$20/$30 copay/prescription (retail)",
+          "doc_b_value": "$10 or $20 or $30 copay",
+          "normalized_value": {"30_day": 10, "60_day": 20, "90_day": 30},
+          "currency": "USD",
+          "validation_type": "semantic_equivalence",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement",
+          "conflict_note": "Doc B uses 'or' separator instead of '/' — semantically equivalent"
+        },
+        {
+          "entity_name": "Tier 2 - Preferred Brand (Network)",
+          "doc_a_value": "$20/$40/$60 copay/prescription (retail)",
+          "doc_b_value": "$20/$40/$60 copay",
+          "normalized_value": {"30_day": 20, "60_day": 40, "90_day": 60},
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement"
+        },
+        {
+          "entity_name": "Tier 3 - Non-Preferred Brand (Network)",
+          "doc_a_value": "$60/$120/$180 copay/prescription (retail)",
+          "doc_b_value": "$60/$120/$180 copay",
+          "normalized_value": {"30_day": 60, "60_day": 120, "90_day": 180},
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement"
+        }
+      ]
+    },
+    {
+      "section_name": "Rehabilitation & Special Health Needs",
+      "entities": [
+        {
+          "entity_name": "Rehabilitation Services (Network)",
+          "doc_a_value": "$20 copay/visit",
+          "doc_b_value": "$20 copay/visit",
+          "normalized_value": 20,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none",
+          "notes": "Deductible does not apply; visit limits apply"
+        },
+        {
+          "entity_name": "Durable Medical Equipment (Network)",
+          "doc_a_value": "30% coinsurance",
+          "doc_b_value": "30% coinsurance",
+          "normalized_value": 0.30,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Mental Health Services",
+      "entities": [
+        {
+          "entity_name": "Mental Health Outpatient Services (Network)",
+          "doc_a_value": "$20 copay/visit",
+          "doc_b_value": "$20 copay/visit",
+          "normalized_value": 20,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Mental Health Inpatient Services (Network)",
+          "doc_a_value": "30% coinsurance",
+          "doc_b_value": "30% coinsurance",
+          "normalized_value": 0.30,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    }
+  ],
+  "perturbation_log": [
+    {
+      "entity": "Specialist Visit",
+      "transformation": "ocr_noise_injection",
+      "original": "$40 copay/visit",
+      "perturbed": "$40 copay/ visit",
+      "impact": "minor formatting artifact, value unchanged"
+    },
+    {
+      "entity": "Diagnostic Test - X-ray / Blood Work",
+      "transformation": "unit_swap",
+      "original": "30% coinsurance",
+      "perturbed": "30 percent coinsurance",
+      "impact": "symbol swapped to word form, semantically equivalent"
+    },
+    {
+      "entity": "Tier 1 - Generic Drugs",
+      "transformation": "synonym_replacement",
+      "original": "$10/$20/$30 copay/prescription (retail)",
+      "perturbed": "$10 or $20 or $30 copay",
+      "impact": "separator style changed, values unchanged"
+    }
+  ],
+  "summary": {
+    "total_entities": 21,
+    "matches": 21,
+    "mismatches": 0,
+    "conflicts": 0,
+    "perturbations_applied": 3,
+    "validation_scenarios_covered": ["exact_match", "semantic_equivalence", "ocr_noise_injection", "unit_swap", "synonym_replacement"]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "PROJECT INITIATION FORM",
+      "doc_b_value": "project initiation form",
+      "normalized_value": "project initiation form",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "September 16, 1980",
+      "doc_b_value": "09/16/1980",
+      "normalized_value": "September 16, 1980",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_no_or_code",
+      "doc_a_value": "BTF",
+      "doc_b_value": "B.T.F.",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_lead",
+      "doc_a_value": "E. P. Barbee",
+      "doc_b_value": "E. P. Barbee",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "primary_signer_name",
+      "doc_a_value": "R. S. Sprinkle, III",
+      "doc_b_value": "R. S. Sprinkle, Jr.",
+      "normalized_value": null,
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "to_person",
+      "doc_a_value": "Files",
+      "doc_b_value": "Project Files",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "BMC/RMI/EPB, JEM/DEC, PRC/DRB",
+      "doc_b_value": "BMC/RMI/EPB, JEM/DEC, PRC/DRB",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    }
+  ]
+}

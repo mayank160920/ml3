@@ -1,0 +1,52 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "PROJECT INITIATION FORM",
+      "doc_b_value": "project initiation form",
+      "normalized_value": "project initiation form",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "1/4/90",
+      "doc_b_value": "January 4, 1990",
+      "normalized_value": "1/4/90",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_no_or_code",
+      "doc_a_value": "BD-FF",
+      "doc_b_value": "BD-XF-90",
+      "normalized_value": null,
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "project_name",
+      "doc_a_value": "BULL DURHAM Full Flavor King Size Cigarettes",
+      "doc_b_value": "Bull Durham FF KS Cigarettes",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_lead",
+      "doc_a_value": "J. F. Anders/J. E. Mann",
+      "doc_b_value": "J. F. Anders/J. E. Mann",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "RSS, RDC, PHL, PRC, DRB, Records, Project Leader, Other Personnel Assigned",
+      "doc_b_value": "RSS, RDC, PHL, PRC, DRB, Records, Project Leader, Other Personnel Assigned",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    }
+  ]
+}

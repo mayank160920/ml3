@@ -1,0 +1,25 @@
+# Core runtime
+chromadb
+fastapi
+openai
+Pillow
+PyMuPDF
+pydantic
+PyYAML
+python-dotenv
+python-multipart
+requests
+simpleeval
+uvicorn
+
+# Streamlit frontend
+pandas
+streamlit
+
+# OCR / helper integrations referenced by the source tree
+groq
+paddleocr
+pyngrok
+
+# Test / evaluation helper used by tests/test_end_to_end.py
+numpy

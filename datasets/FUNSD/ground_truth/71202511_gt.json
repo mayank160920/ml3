@@ -1,0 +1,84 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "MARKETING RESEARCH AUTHORIZATION",
+      "doc_b_value": "Marketing Research Authorization",
+      "normalized_value": "marketing research authorization",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "1998-18D",
+      "doc_b_value": "1998-18d",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "220076948",
+      "doc_b_value": "220076949",
+      "normalized_value": "220076948",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "2/26/98",
+      "doc_b_value": "February 26, 1998",
+      "normalized_value": "1998-02-26",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_no_or_code",
+      "doc_a_value": "1998-18D",
+      "doc_b_value": "1998-18d",
+      "normalized_value": "1998-18d",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_name",
+      "doc_a_value": "KOOL Natural Lights Packaging - Round I",
+      "doc_b_value": "KOOL Natural Lights Pkg - Round 1",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "primary_signer_name",
+      "doc_a_value": "Julita A. Noid",
+      "doc_b_value": "Julita A. Noid",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "MaDonna Sliker",
+      "doc_b_value": "M. Sliker",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "final_volume_or_quantity",
+      "doc_a_value": "12 groups",
+      "doc_b_value": "10 groups",
+      "normalized_value": "12",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "final_amount",
+      "doc_a_value": "$ 58,500",
+      "doc_b_value": "58500.00 USD",
+      "normalized_value": "58500",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    }
+  ]
+}

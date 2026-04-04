@@ -1,0 +1,84 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "INTERNATIONAL MARKETING RESEARCH CHANGE OF AUTHORIZED COST",
+      "doc_b_value": "International Marketing Research Change of Authorized Cost",
+      "normalized_value": "international marketing research change of authorized cost",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "27",
+      "doc_b_value": "27",
+      "normalized_value": "27",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "464537440",
+      "doc_b_value": "464537441",
+      "normalized_value": "464537440",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "6/21/90",
+      "doc_b_value": "June 21, 1990",
+      "normalized_value": "1990-06-21",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "source_organisation",
+      "doc_a_value": "MDR, HK",
+      "doc_b_value": "MDR, Hong Kong",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_no_or_code",
+      "doc_a_value": "1989-29",
+      "doc_b_value": "1989-29",
+      "normalized_value": "1989-29",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "project_name",
+      "doc_a_value": "Hong Kong: Cigarette Market Monitor",
+      "doc_b_value": "HK: Cigarette Market Monitor",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "primary_signer_name",
+      "doc_a_value": "M. D. Davis",
+      "doc_b_value": "M. D. Davis",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "cc_list",
+      "doc_a_value": "Project File, MRA File, N. W. Kremer",
+      "doc_b_value": "Project File, MRA File, NW Kremer",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "final_amount",
+      "doc_a_value": "$ 47,711.47",
+      "doc_b_value": "$ 47,711.00",
+      "normalized_value": "47711.47",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    }
+  ]
+}

@@ -1,0 +1,348 @@
+{
+  "document_id": "sbc_007",
+  "doc_a": {
+    "type": "SBC",
+    "plan_name": "PPO Blue",
+    "insurer": "Highmark Blue Shield",
+    "coverage_period": "01/01/2020 - 12/31/2020",
+    "plan_type": "PPO",
+    "file": "sbc__7_.pdf"
+  },
+  "doc_b": {
+    "type": "Benefit Grid",
+    "file": "SBCBG7.pdf",
+    "perturbations_applied": [
+      "numeric_rounding_error",
+      "conflict_injection",
+      "synonym_replacement",
+      "unit_swap"
+    ]
+  },
+  "sections": [
+    {
+      "section_name": "Plan Overview",
+      "entities": [
+        {
+          "entity_name": "Individual Deductible (Network)",
+          "doc_a_value": "$1,000",
+          "doc_b_value": "$1,000",
+          "normalized_value": 1000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Deductible (Network)",
+          "doc_a_value": "$2,000",
+          "doc_b_value": "$2,000",
+          "normalized_value": 2000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Individual Out-of-Pocket Maximum (Network)",
+          "doc_a_value": "$2,000 (up to total max $8,150)",
+          "doc_b_value": "$ 2,000",
+          "normalized_value": 2000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "ocr_noise_injection",
+          "conflict_note": "Doc B has space artifact '$ 2,000' and omits total max qualifier"
+        },
+        {
+          "entity_name": "Family Out-of-Pocket Maximum (Network)",
+          "doc_a_value": "$4,000 (up to total max $16,300)",
+          "doc_b_value": "$4,000",
+          "normalized_value": 4000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement",
+          "conflict_note": "Doc B omits total maximum qualifier"
+        },
+        {
+          "entity_name": "Individual Deductible (Out-of-Network)",
+          "doc_a_value": "$2,000",
+          "doc_b_value": "$2,000",
+          "normalized_value": 2000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Deductible (Out-of-Network)",
+          "doc_a_value": "$4,000",
+          "doc_b_value": "$4,000",
+          "normalized_value": 4000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Doctor Visits",
+      "entities": [
+        {
+          "entity_name": "Primary Care Visit (Network)",
+          "doc_a_value": "$20 copay/visit",
+          "doc_b_value": "$20 copay/visit",
+          "normalized_value": 20,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Specialist Visit (Network)",
+          "doc_a_value": "$40 copay/visit",
+          "doc_b_value": "$40 copay/visit",
+          "normalized_value": 40,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Preventive Care (Network)",
+          "doc_a_value": "No charge",
+          "doc_b_value": "No charge at all",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "semantic_equivalence",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement",
+          "conflict_note": "'No charge' vs 'No charge at all' — semantically equivalent"
+        }
+      ]
+    },
+    {
+      "section_name": "Medical Tests",
+      "entities": [
+        {
+          "entity_name": "Diagnostic Test - X-ray / Blood Work (Network)",
+          "doc_a_value": "10% coinsurance",
+          "doc_b_value": "10% coinsurance",
+          "normalized_value": 0.10,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Imaging - CT/PET/MRI (Network)",
+          "doc_a_value": "10% coinsurance",
+          "doc_b_value": "10% coinsurance",
+          "normalized_value": 0.10,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Emergency & Urgent Care",
+      "entities": [
+        {
+          "entity_name": "Emergency Room Care",
+          "doc_a_value": "$100 copay/visit",
+          "doc_b_value": "$100 copay",
+          "normalized_value": 100,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement",
+          "notes": "Copay waived if admitted as inpatient"
+        },
+        {
+          "entity_name": "Urgent Care (Network)",
+          "doc_a_value": "$40 copay/visit",
+          "doc_b_value": "$40 copay/visit",
+          "normalized_value": 40,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Emergency Medical Transportation (Network)",
+          "doc_a_value": "10% coinsurance",
+          "doc_b_value": "10% coinsurance",
+          "normalized_value": 0.10,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Hospital Services",
+      "entities": [
+        {
+          "entity_name": "Hospital Stay - Facility Fee (Network)",
+          "doc_a_value": "10% coinsurance",
+          "doc_b_value": "10% coinsurance",
+          "normalized_value": 0.10,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Physician / Surgeon Fees (Network)",
+          "doc_a_value": "10% coinsurance",
+          "doc_b_value": "10 % coinsurance",
+          "normalized_value": 0.10,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "ocr_noise_injection",
+          "conflict_note": "Space artifact between '10' and '%' in Doc B"
+        }
+      ]
+    },
+    {
+      "section_name": "Prescription Drugs",
+      "entities": [
+        {
+          "entity_name": "Generic Drugs (Network)",
+          "doc_a_value": "20% coinsurance with $10 min / $100 max per prescription (retail)",
+          "doc_b_value": "20% coinsurance",
+          "normalized_value": 0.20,
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "conflict_injection",
+          "conflict_note": "SBC specifies $10 min / $100 max guardrails for coinsurance; Doc B omits min/max limits — incomplete representation"
+        },
+        {
+          "entity_name": "Brand Drugs (Network)",
+          "doc_a_value": "20% coinsurance with $10 min / $100 max per prescription (retail)",
+          "doc_b_value": "20% coinsurance",
+          "normalized_value": 0.20,
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "conflict_injection",
+          "conflict_note": "SBC: 20% coinsurance with $10 min/$100 max; Doc B: 20% coinsurance — min/max guardrails missing"
+        }
+      ]
+    },
+    {
+      "section_name": "Rehabilitation & Special Health Needs",
+      "entities": [
+        {
+          "entity_name": "Rehabilitation Services (Network)",
+          "doc_a_value": "$40 copay/visit",
+          "doc_b_value": "10% coinsurance",
+          "normalized_value_a": 40,
+          "normalized_value_b": 0.10,
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "conflict_injection",
+          "conflict_note": "SBC: $40 copay/visit; Doc B: 10% coinsurance — completely different cost structure"
+        },
+        {
+          "entity_name": "Durable Medical Equipment (Network)",
+          "doc_a_value": "10% coinsurance",
+          "doc_b_value": "10% coinsurance",
+          "normalized_value": 0.10,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Mental Health Services",
+      "entities": [
+        {
+          "entity_name": "Mental Health Outpatient Services (Network)",
+          "doc_a_value": "$40 copay/visit",
+          "doc_b_value": "$ 40 copay/visit",
+          "normalized_value": 40,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "ocr_noise_injection",
+          "conflict_note": "Space artifact '$ 40' in Doc B"
+        },
+        {
+          "entity_name": "Mental Health Inpatient Services (Network)",
+          "doc_a_value": "10% coinsurance",
+          "doc_b_value": "10% coinsurance",
+          "normalized_value": 0.10,
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    }
+  ],
+  "perturbation_log": [
+    {
+      "entity": "Individual Out-of-Pocket Maximum",
+      "transformation": "ocr_noise_injection",
+      "original": "$2,000",
+      "perturbed": "$ 2,000",
+      "impact": "space artifact, value unchanged"
+    },
+    {
+      "entity": "Preventive Care",
+      "transformation": "synonym_replacement",
+      "original": "No charge",
+      "perturbed": "No charge at all",
+      "impact": "extra qualifier added, semantically equivalent"
+    },
+    {
+      "entity": "Physician / Surgeon Fees",
+      "transformation": "ocr_noise_injection",
+      "original": "10% coinsurance",
+      "perturbed": "10 % coinsurance",
+      "impact": "space artifact, value unchanged"
+    },
+    {
+      "entity": "Generic Drugs",
+      "transformation": "conflict_injection",
+      "original": "20% coinsurance with $10 min / $100 max",
+      "perturbed": "20% coinsurance",
+      "impact": "PARTIAL MISMATCH — min/max guardrails removed"
+    },
+    {
+      "entity": "Brand Drugs",
+      "transformation": "conflict_injection",
+      "original": "20% coinsurance with $10 min / $100 max",
+      "perturbed": "20% coinsurance",
+      "impact": "PARTIAL MISMATCH — min/max guardrails removed"
+    },
+    {
+      "entity": "Rehabilitation Services",
+      "transformation": "conflict_injection",
+      "original": "$40 copay/visit",
+      "perturbed": "10% coinsurance",
+      "impact": "FACTUAL MISMATCH — copay replaced with coinsurance"
+    },
+    {
+      "entity": "Mental Health Outpatient Services",
+      "transformation": "ocr_noise_injection",
+      "original": "$40 copay/visit",
+      "perturbed": "$ 40 copay/visit",
+      "impact": "space artifact, value unchanged"
+    }
+  ],
+  "summary": {
+    "total_entities": 20,
+    "matches": 16,
+    "mismatches": 3,
+    "conflicts": 3,
+    "perturbations_applied": 7,
+    "validation_scenarios_covered": [
+      "exact_match",
+      "semantic_equivalence",
+      "conflict",
+      "ocr_noise_injection",
+      "synonym_replacement"
+    ]
+  }
+}

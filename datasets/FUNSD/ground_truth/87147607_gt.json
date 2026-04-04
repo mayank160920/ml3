@@ -1,0 +1,52 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "PURCHASE REQUISITION",
+      "doc_b_value": "Purchase Requisition",
+      "normalized_value": "purchase requisition",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "P.O. 1534 REV.10/79 LT-10-79",
+      "doc_b_value": "PO 1534 REV 10/79 LT 10-79",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "87147607",
+      "doc_b_value": "87147609",
+      "normalized_value": "87147607",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "April 19, 1988",
+      "doc_b_value": "04/19/1988",
+      "normalized_value": "April 19, 1988",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "source_organisation",
+      "doc_a_value": "Piedmont Research Laboratory",
+      "doc_b_value": "Piedmont Research Lab",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "primary_signer_name",
+      "doc_a_value": "H. J. Minnemeyer",
+      "doc_b_value": "H. J. MINNEMEYER",
+      "normalized_value": "h. j. minnemeyer",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    }
+  ]
+}

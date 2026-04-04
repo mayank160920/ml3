@@ -1,0 +1,52 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "COMPOUND PHYSICAL PARAMETERS",
+      "doc_b_value": "Compound Physical Parameters",
+      "normalized_value": "compound physical parameters",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "A32",
+      "doc_b_value": "A-32",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "00837285",
+      "doc_b_value": "00837285",
+      "normalized_value": "00837285",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "11/13/81",
+      "doc_b_value": "11/18/81",
+      "normalized_value": "11/13/81",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "source_organisation",
+      "doc_a_value": "LORILLARD RESEARCH CENTER",
+      "doc_b_value": "Lorillard Research Ctr.",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "primary_signer_name",
+      "doc_a_value": "Lynn F. Johnson",
+      "doc_b_value": "Lynn F. Johnson",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    }
+  ]
+}

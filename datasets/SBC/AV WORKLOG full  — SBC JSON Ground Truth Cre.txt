@@ -1,0 +1,195 @@
+WORKLOG
+Task   : SBC vs Benefit Grid — Validation Dataset Preparation
+Date   : 2026-03-06
+
+---------------------------------------------------------------
+
+OBJECTIVE
+
+Prepared a labeled dataset to support cross-document validation
+between two types of healthcare documents:
+
+  Doc A  —  Summary of Benefits and Coverage (SBC)
+  Doc B  —  Benefit Grid derived from the SBC
+
+The dataset is intended to evaluate systems performing tasks such
+as entity extraction, semantic equivalence detection, numeric
+normalization, and conflict detection across related documents.
+
+---------------------------------------------------------------
+
+DATA COLLECTION
+
+SBC documents were sourced by searching for Highmark PPO plans
+across different coverage tiers and plan variants. Initial searches
+returned a high number of duplicate files, so queries were expanded
+using specific plan names, tiers (Gold, Silver, Bronze), and plan
+identifiers to diversify the collection.
+
+A total of 20 SBC PDFs were collected. Each document was typically
+2 to 11 pages long and contained detailed cost-sharing tables
+covering services such as:
+
+  — primary and specialist doctor visits
+  — preventive care and diagnostics
+  — emergency and urgent care
+  — hospital stays and physician fees
+  — prescription drug tiers
+  — rehabilitation and physical therapy
+  — durable medical equipment
+  — mental health services
+
+These SBC documents form Doc A of each document pair.
+
+---------------------------------------------------------------
+
+BENEFIT GRID CREATION
+
+To bring the varied SBC formats into a consistent structure, a
+standardized benefit grid template was defined. The template
+captures around 20 service categories in a tabular format with
+columns for service, in-network cost, out-of-network cost, and
+notes.
+
+For each SBC, the cost-sharing section was reviewed and relevant
+values were extracted and mapped into the template. This produced
+20 benefit grid documents, which serve as the structured Doc B
+counterpart to each SBC.
+
+---------------------------------------------------------------
+
+CHALLENGES ENCOUNTERED
+
+Several issues came up during extraction and grid creation:
+
+  Duplicate documents
+  Many SBC files available online were identical copies. This was
+  addressed by diversifying search terms across plan names,
+  coverage tiers, and plan variants.
+
+  Complex table structures
+  Some SBC documents listed multiple network levels such as
+  enhanced, standard, and out-of-network tiers within the same
+  table. To maintain consistency, only the primary in-network
+  column was used when populating the benefit grid.
+
+  Formatting inconsistencies
+  Exporting tables from PDF to structured format occasionally
+  caused column misalignment and text wrapping issues. These
+  were reviewed and corrected manually before finalizing each
+  grid.
+
+  Ambiguous service descriptions
+  Certain SBC entries combined multiple services or conditions
+  under a single row. In these cases, values were interpreted
+  based on the most applicable service context and noted
+  accordingly.
+
+---------------------------------------------------------------
+
+CONTROLLED AUGMENTATION
+
+Out of the 20 benefit grids, 8 were intentionally modified to
+simulate the kinds of inconsistencies a validation system might
+encounter in real-world documents. The remaining 12 were kept
+unchanged as baseline references.
+
+Modifications were applied manually using a PDF editor, limited
+to specific fields so the overall document structure remained
+intact. The following types of changes were introduced:
+
+  Semantic wording changes
+  Rephrased values that carry the same meaning but use different
+  expressions. For example:
+    "No charge"  →  "Covered in full"
+    "$15 copay per visit"  →  "$15 copay/visit"
+  Purpose: test semantic equivalence detection.
+
+  Numeric formatting variations
+  Changed how numeric values are represented without altering
+  the actual amount. For example:
+    "$6,550"  →  "6550"
+    "20% coinsurance"  →  "0.20 coinsurance"
+  Purpose: evaluate numeric normalization.
+
+  Value conflicts
+  Changed the actual cost-sharing value to introduce a factual
+  discrepancy. For example:
+    Physical Therapy  "$40 copay"  →  "$15 copay"
+    Hospital Stay     "$525 copay" →  "$400 copay"
+  Purpose: introduce detectable conflicts.
+
+  Coverage status changes
+  Altered the nature of coverage entirely. For example:
+    Urgent Care              "$30 copay"  →  "Covered in full"
+    Mental Health Inpatient  "$525 copay" →  "Fully covered"
+  Purpose: simulate plan-level coverage differences.
+
+All modifications were logged with the document ID, service
+affected, original value, modified value, and modification type
+to maintain full traceability.
+
+---------------------------------------------------------------
+
+GROUND TRUTH JSON GENERATION
+
+Ground truth JSON files were created for the 8 augmented document
+pairs. Each file captures entity-level comparisons across all
+major benefit sections. For every cost-sharing value, the
+following was recorded:
+
+  — value as stated in Doc A (SBC)
+  — value as stated in Doc B (Benefit Grid)
+  — normalized form of the value
+  — validation type applied
+  — match or mismatch result
+  — conflict note where a factual discrepancy was found
+
+A perturbation log was also included in each file to track what
+type of modification was applied to that entity, supporting
+downstream analysis of model performance by error type.
+
+---------------------------------------------------------------
+
+VALIDATION SCENARIOS COVERED
+
+The dataset was designed to cover the following scenarios:
+
+  Exact match
+  Both documents state the same value in the same format.
+
+  Semantic equivalence
+  Values differ in phrasing but carry the same meaning.
+  Example: "No charge" and "Covered in full."
+
+  Numeric normalization
+  Values represent the same amount in different formats.
+  Example: "20%" and "0.20 coinsurance."
+
+  OCR and formatting noise
+  Minor formatting artifacts such as extra spaces or inconsistent
+  punctuation that should not affect the underlying value.
+  Example: "$20 copay/visit" and "$20 - copay/visit."
+
+  Conflict detection
+  Values differ factually and represent a genuine discrepancy
+  between documents.
+  Example: "$525 copay" vs "$400 copay."
+
+  Coverage change detection
+  One document shows a cost-sharing amount while the other
+  indicates the service is fully covered at no charge.
+
+---------------------------------------------------------------
+
+
+
+
+OUTPUT
+
+  20 SBC documents           —  Doc A
+  20 Benefit Grid documents  —  Doc B
+   8 Ground truth JSON files —  one per augmented document pair,
+                                saved to outputs folder
+
+---------------------------------------------------------------

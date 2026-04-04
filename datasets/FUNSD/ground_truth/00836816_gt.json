@@ -1,0 +1,52 @@
+{
+  "entities": [
+    {
+      "entity_name": "document_title",
+      "doc_a_value": "COMPOUND PHYSICAL PARAMETERS",
+      "doc_b_value": "Compound Physical Parameters",
+      "normalized_value": "compound physical parameters",
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_reference_number",
+      "doc_a_value": "A30",
+      "doc_b_value": "A-30",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "document_stamp_id",
+      "doc_a_value": "00836816",
+      "doc_b_value": "00836899",
+      "normalized_value": "00836816",
+      "validation_type": "conflict",
+      "validation_result": "mismatch"
+    },
+    {
+      "entity_name": "document_date",
+      "doc_a_value": "8/10/82",
+      "doc_b_value": "August 10, 1982",
+      "normalized_value": "8/10/82",
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "source_organisation",
+      "doc_a_value": "LORILLARD RESEARCH CENTER",
+      "doc_b_value": "Lorillard Research Ctr.",
+      "normalized_value": null,
+      "validation_type": "semantic_match",
+      "validation_result": "match"
+    },
+    {
+      "entity_name": "primary_signer_name",
+      "doc_a_value": "W. A. Long",
+      "doc_b_value": "W. A. Long",
+      "normalized_value": null,
+      "validation_type": "exact_match",
+      "validation_result": "match"
+    }
+  ]
+}

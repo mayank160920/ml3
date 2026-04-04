@@ -1,0 +1,235 @@
+# configs/healthcare_sbc_config.yaml
+# ------------------------------------
+# Healthcare Summary of Benefits and Coverage (SBC) vs Benefit Grid
+# 18 entities across 5 sections.
+
+config_name: healthcare_sbc_config
+version: "1.0"
+domain: healthcare_insurance
+
+sections:
+
+  - section_name: Deductibles
+    section_description: >
+      Annual amounts a member must pay out-of-pocket before insurance
+      coverage begins paying for covered services.
+    section_keywords:
+      - deductible
+      - before your plan pays
+      - annual
+      - individual
+      - family
+      - in-network
+      - out-of-network
+    entities:
+      - entity_name: individual_deductible_in_network
+        entity_description: >
+          Per-person annual deductible for in-network providers — the amount
+          a single member must pay before the plan begins covering costs.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$1,500"
+        data_type: monetary
+
+      - entity_name: family_deductible_in_network
+        entity_description: >
+          Annual deductible for the entire family for in-network providers.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$3,000"
+        data_type: monetary
+
+      - entity_name: individual_deductible_out_of_network
+        entity_description: >
+          Per-person annual deductible for out-of-network providers.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$4,500"
+        data_type: monetary
+
+      - entity_name: combined_family_deductible
+        entity_description: >
+          Total combined family deductible across in-network and
+          out-of-network tiers, computed from individual tier values.
+        entity_extraction_logic: EXPRESSION
+        entity_example_value: "$7,500"
+        data_type: monetary
+        expression_template: "individual_deductible_in_network + individual_deductible_out_of_network"
+        expression_variables:
+          individual_deductible_in_network:
+            description: "In-network individual deductible dollar amount"
+            example_value: "$1,500"
+          individual_deductible_out_of_network:
+            description: "Out-of-network individual deductible dollar amount"
+            example_value: "$4,500"
+
+  - section_name: Out-of-Pocket Maximums
+    section_description: >
+      Annual cap on total member cost-sharing obligations, after which the
+      plan covers 100% of covered services for the remainder of the year.
+    section_keywords:
+      - out-of-pocket
+      - maximum
+      - limit
+      - stop-loss
+      - oop
+      - annual cap
+    entities:
+      - entity_name: individual_oop_max_in_network
+        entity_description: >
+          Per-person annual out-of-pocket maximum for in-network care.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$5,000"
+        data_type: monetary
+
+      - entity_name: family_oop_max_in_network
+        entity_description: >
+          Family annual out-of-pocket maximum for in-network care.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$10,000"
+        data_type: monetary
+
+      - entity_name: individual_oop_max_out_of_network
+        entity_description: >
+          Per-person annual out-of-pocket maximum for out-of-network care.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$15,000"
+        data_type: monetary
+
+  - section_name: Copayments and Coinsurance
+    section_description: >
+      Fixed dollar copayments or percentage coinsurance the member pays
+      per service visit after the deductible has been met.
+    section_keywords:
+      - copay
+      - coinsurance
+      - specialist
+      - emergency
+      - primary care
+      - preventive
+      - urgent care
+    entities:
+      - entity_name: primary_care_copay
+        entity_description: >
+          Member copay for a primary care physician (PCP) visit.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$25"
+        data_type: monetary
+
+      - entity_name: specialist_copay
+        entity_description: >
+          Member copay for a specialist visit.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$50"
+        data_type: monetary
+
+      - entity_name: emergency_room_copay
+        entity_description: >
+          Member copay for an emergency room visit.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$250"
+        data_type: monetary
+
+      - entity_name: urgent_care_copay
+        entity_description: >
+          Member copay for an urgent care center visit.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$40"
+        data_type: monetary
+
+      - entity_name: preventive_care_cost
+        entity_description: >
+          Member cost for preventive care services — commonly No charge or $0.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "No charge"
+        data_type: coverage_classification
+
+  - section_name: Prescription Drug Costs
+    section_description: >
+      Member cost-sharing for prescription medications, organized by
+      formulary tier (generic → specialty).
+    section_keywords:
+      - prescription
+      - drug
+      - formulary
+      - generic
+      - brand
+      - tier
+      - copay
+      - mail order
+    entities:
+      - entity_name: tier1_generic_copay
+        entity_description: >
+          30-day supply copay for Tier 1 generic drugs.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$10"
+        data_type: monetary
+
+      - entity_name: tier2_preferred_brand_copay
+        entity_description: >
+          30-day supply copay for Tier 2 preferred brand drugs.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$40"
+        data_type: monetary
+
+      - entity_name: tier3_non_preferred_brand_copay
+        entity_description: >
+          30-day supply copay for Tier 3 non-preferred brand drugs.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "$80"
+        data_type: monetary
+
+      - entity_name: tier4_specialty_coinsurance
+        entity_description: >
+          Coinsurance percentage the member pays for Tier 4 specialty drugs.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "25%"
+        data_type: percentage
+
+      - entity_name: monthly_effective_drug_cost
+        entity_description: >
+          Computed effective monthly out-of-pocket drug cost combining
+          Tier 1 and Tier 2 costs for a typical member.
+        entity_extraction_logic: EXPRESSION
+        entity_example_value: "$50"
+        data_type: monetary
+        expression_template: "tier1_generic_copay + tier2_preferred_brand_copay"
+        expression_variables:
+          tier1_generic_copay:
+            description: "30-day Tier 1 generic copay dollar amount"
+            example_value: "$10"
+          tier2_preferred_brand_copay:
+            description: "30-day Tier 2 preferred brand copay dollar amount"
+            example_value: "$40"
+
+  - section_name: Coverage Classifications
+    section_description: >
+      Binary or categorical coverage determinations — whether specific
+      services are covered, require prior authorization, or are excluded.
+    section_keywords:
+      - covered
+      - not covered
+      - prior authorization
+      - excluded
+      - requires referral
+    entities:
+      - entity_name: mental_health_coverage
+        entity_description: >
+          Whether mental health and substance use disorder services are covered.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "Covered"
+        data_type: coverage_classification
+
+      - entity_name: prior_authorization_required
+        entity_description: >
+          Whether prior authorization is required for specialist or
+          hospital services.
+        entity_extraction_logic: DIRECT
+        entity_example_value: "Yes"
+        data_type: coverage_classification
+
+validation_settings:
+  confidence_threshold: 0.75
+  high_stakes_entities:
+    - individual_deductible_in_network
+    - family_deductible_in_network
+    - individual_oop_max_in_network
+    - family_oop_max_in_network
+  human_review_escalation: true

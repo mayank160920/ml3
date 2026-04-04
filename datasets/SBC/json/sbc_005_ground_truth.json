@@ -1,0 +1,362 @@
+{
+  "document_id": "sbc_005",
+  "doc_a": {
+    "type": "SBC",
+    "plan_name": "State of Delaware: Highmark Comprehensive PPO",
+    "insurer": "Highmark Blue Cross Blue Shield Delaware",
+    "coverage_period": "07/01/2024 - 06/30/2025",
+    "file": "sbc__5_.pdf"
+  },
+  "doc_b": {
+    "type": "Benefit Grid",
+    "file": "SBCBG5.pdf",
+    "perturbations_applied": [
+      "numeric_rounding_error",
+      "conflict_injection",
+      "synonym_replacement",
+      "unit_swap"
+    ]
+  },
+  "sections": [
+    {
+      "section_name": "Plan Overview",
+      "entities": [
+        {
+          "entity_name": "Individual Deductible (Network)",
+          "doc_a_value": "$0",
+          "doc_b_value": "$0",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Deductible (Network)",
+          "doc_a_value": "$0",
+          "doc_b_value": "$0",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Individual Out-of-Pocket Maximum (Medical - Network)",
+          "doc_a_value": "$4,500",
+          "doc_b_value": "$4,500",
+          "normalized_value": 4500,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Out-of-Pocket Maximum (Medical - Network)",
+          "doc_a_value": "$9,000",
+          "doc_b_value": "$9,000",
+          "normalized_value": 9000,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Individual Deductible (Out-of-Network)",
+          "doc_a_value": "$300",
+          "doc_b_value": "$300",
+          "normalized_value": 300,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Family Deductible (Out-of-Network)",
+          "doc_a_value": "$600",
+          "doc_b_value": "$600",
+          "normalized_value": 600,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Doctor Visits",
+      "entities": [
+        {
+          "entity_name": "Primary Care Visit (Network)",
+          "doc_a_value": "$20 copay/visit",
+          "doc_b_value": "$20 copay per visit",
+          "normalized_value": 20,
+          "currency": "USD",
+          "validation_type": "semantic_equivalence",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement",
+          "conflict_note": "Doc B uses 'per visit' instead of '/visit' — semantically equivalent"
+        },
+        {
+          "entity_name": "Specialist Visit (Network)",
+          "doc_a_value": "$30 copay/visit",
+          "doc_b_value": "$30 copay/visit",
+          "normalized_value": 30,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Preventive Care (Network)",
+          "doc_a_value": "No charge",
+          "doc_b_value": "No charge",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Medical Tests",
+      "entities": [
+        {
+          "entity_name": "Diagnostic Test - X-ray (Network, non-hospital freestanding)",
+          "doc_a_value": "No charge",
+          "doc_b_value": "No charge or $50 copay depending facility",
+          "normalized_value_a": 0,
+          "normalized_value_b": "0 or 50",
+          "currency": "USD",
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "conflict_injection",
+          "conflict_note": "Doc B conflates two facility types into one row — hospital-based facility is $50 but Doc B presentation is ambiguous"
+        },
+        {
+          "entity_name": "Imaging - CT/PET/MRI (Network, non-hospital freestanding)",
+          "doc_a_value": "No charge",
+          "doc_b_value": "No charge or $100 copay depending facil",
+          "normalized_value_a": 0,
+          "normalized_value_b": "0 or 100",
+          "currency": "USD",
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "conflict_injection",
+          "conflict_note": "Doc B truncates 'facility' and conflates both facility types; SBC distinguishes $0 (freestanding) vs $100 (hospital-based)"
+        }
+      ]
+    },
+    {
+      "section_name": "Emergency & Urgent Care",
+      "entities": [
+        {
+          "entity_name": "Emergency Room Care",
+          "doc_a_value": "$200 copay/visit",
+          "doc_b_value": "$200 copay/visit",
+          "normalized_value": 200,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none",
+          "notes": "Copay waived if admitted; care within 48 hours of onset"
+        },
+        {
+          "entity_name": "Urgent Care",
+          "doc_a_value": "$20 copay/visit",
+          "doc_b_value": "$20 copay/visit",
+          "normalized_value": 20,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Emergency Medical Transportation (Ground)",
+          "doc_a_value": "No charge",
+          "doc_b_value": "Coinsurance varies",
+          "normalized_value_a": 0,
+          "normalized_value_b": "variable",
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "conflict_injection",
+          "conflict_note": "SBC states 'No charge for ground ambulance'; Doc B states 'Coinsurance varies' — factual conflict"
+        }
+      ]
+    },
+    {
+      "section_name": "Hospital Services",
+      "entities": [
+        {
+          "entity_name": "Hospital Stay - Facility Fee (Network)",
+          "doc_a_value": "$100 copay/day; $200 maximum/admission",
+          "doc_b_value": "$100 copay/day (max $200 admission)",
+          "normalized_value": {"per_day": 100, "max_per_admission": 200},
+          "currency": "USD",
+          "validation_type": "semantic_equivalence",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement",
+          "conflict_note": "Doc B uses parenthesis for max — semantically equivalent"
+        },
+        {
+          "entity_name": "Physician / Surgeon Fees (Network)",
+          "doc_a_value": "No charge",
+          "doc_b_value": "No charge",
+          "normalized_value": 0,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Prescription Drugs",
+      "entities": [
+        {
+          "entity_name": "Generic Drugs - 30-day supply (Network)",
+          "doc_a_value": "$10 copay/prescription",
+          "doc_b_value": "$10 copay (30 day) / $20 copay (90 day)",
+          "normalized_value": {"30_day": 10, "90_day": 20},
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none",
+          "notes": "Doc B correctly shows both 30 and 90 day supply tiers matching SBC"
+        },
+        {
+          "entity_name": "Preferred Brand Drugs - 30-day supply (Network)",
+          "doc_a_value": "$32 copay/prescription",
+          "doc_b_value": "$32 copay (30 day) / $64 copay (90 day)",
+          "normalized_value": {"30_day": 32, "90_day": 64},
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        },
+        {
+          "entity_name": "Non-Preferred Brand Drugs - 30-day supply (Network)",
+          "doc_a_value": "$60 copay/prescription",
+          "doc_b_value": "$60 copay (30 day) / $120 copay (90 day)",
+          "normalized_value": {"30_day": 60, "90_day": 120},
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "none"
+        }
+      ]
+    },
+    {
+      "section_name": "Rehabilitation & Special Health Needs",
+      "entities": [
+        {
+          "entity_name": "Rehabilitation Services (Network)",
+          "doc_a_value": "15% coinsurance",
+          "doc_b_value": "20% coinsurance",
+          "normalized_value_a": 0.15,
+          "normalized_value_b": 0.20,
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "numeric_rounding_error",
+          "conflict_note": "SBC states 15% coinsurance for network rehabilitation; Doc B incorrectly states 20% — factual conflict"
+        },
+        {
+          "entity_name": "Durable Medical Equipment (Network)",
+          "doc_a_value": "No charge",
+          "doc_b_value": "Coinsurance varies",
+          "normalized_value_a": 0,
+          "normalized_value_b": "variable",
+          "validation_type": "conflict",
+          "validation_result": "mismatch",
+          "perturbation": "conflict_injection",
+          "conflict_note": "SBC states 'No charge' for DME (network); Doc B states 'Coinsurance varies' — factual conflict"
+        }
+      ]
+    },
+    {
+      "section_name": "Mental Health Services",
+      "entities": [
+        {
+          "entity_name": "Mental Health Outpatient Services (Network)",
+          "doc_a_value": "$20 copay/office visit (intensive outpatient: No charge)",
+          "doc_b_value": "$20 copay/visit",
+          "normalized_value": 20,
+          "currency": "USD",
+          "validation_type": "exact_match",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement",
+          "conflict_note": "Doc B omits intensive outpatient 'No charge' distinction — partial match"
+        },
+        {
+          "entity_name": "Mental Health Inpatient Services (Network)",
+          "doc_a_value": "$100 copay/day; $200 maximum/admission",
+          "doc_b_value": "$100 copay per day (max $200 admission)",
+          "normalized_value": {"per_day": 100, "max_per_admission": 200},
+          "currency": "USD",
+          "validation_type": "semantic_equivalence",
+          "validation_result": "match",
+          "perturbation": "synonym_replacement"
+        }
+      ]
+    }
+  ],
+  "perturbation_log": [
+    {
+      "entity": "Primary Care Visit",
+      "transformation": "synonym_replacement",
+      "original": "$20 copay/visit",
+      "perturbed": "$20 copay per visit",
+      "impact": "formatting change, value unchanged"
+    },
+    {
+      "entity": "Diagnostic Test - X-ray",
+      "transformation": "conflict_injection",
+      "original": "No charge (non-hospital freestanding); $50 copay (hospital-based)",
+      "perturbed": "No charge or $50 copay depending facility",
+      "impact": "ambiguous presentation, both values present but context lost"
+    },
+    {
+      "entity": "Imaging",
+      "transformation": "conflict_injection",
+      "original": "No charge (non-hospital freestanding); $100 copay (hospital-based)",
+      "perturbed": "No charge or $100 copay depending facil",
+      "impact": "truncation and ambiguous presentation"
+    },
+    {
+      "entity": "Emergency Medical Transportation (Ground)",
+      "transformation": "conflict_injection",
+      "original": "No charge",
+      "perturbed": "Coinsurance varies",
+      "impact": "FACTUAL MISMATCH — entirely different cost structure"
+    },
+    {
+      "entity": "Rehabilitation Services",
+      "transformation": "numeric_rounding_error",
+      "original": "15% coinsurance",
+      "perturbed": "20% coinsurance",
+      "impact": "FACTUAL MISMATCH — incorrect coinsurance percentage"
+    },
+    {
+      "entity": "Durable Medical Equipment",
+      "transformation": "conflict_injection",
+      "original": "No charge",
+      "perturbed": "Coinsurance varies",
+      "impact": "FACTUAL MISMATCH — entirely different cost structure"
+    }
+  ],
+  "summary": {
+    "total_entities": 20,
+    "matches": 14,
+    "mismatches": 5,
+    "conflicts": 5,
+    "perturbations_applied": 6,
+    "validation_scenarios_covered": [
+      "exact_match",
+      "semantic_equivalence",
+      "conflict",
+      "numeric_rounding_error",
+      "synonym_replacement"
+    ]
+  }
+}
